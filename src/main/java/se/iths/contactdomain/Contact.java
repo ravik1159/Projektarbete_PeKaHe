@@ -6,9 +6,9 @@ public class Contact {
     private String lastName;
     private int telephone;
 
-    public Contact(String FirstName, String LastName, int telephone) {
-        this.firstName = FirstName;
-        this.lastName = LastName;
+    public Contact(String firstName, String lastName, int telephone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.telephone = telephone;
     }
 

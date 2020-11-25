@@ -1,9 +1,13 @@
 package se.iths.userinteraction;
 
+import se.iths.contactdomain.Contact;
+import se.iths.contactdomain.ContactBook;
+
 import java.util.Scanner;
 
 public class UserInteraction {
     private static Scanner scan = new Scanner(System.in);
+    private static ContactBook contactBook = new ContactBook();
 
     public void startMenue(){
 
@@ -55,5 +59,18 @@ public class UserInteraction {
                 break;
 
         }
+    }
+
+    public void addNewContact() {
+        System.out.println("You are adding a new contact.");
+        System.out.print("First name: ");
+        String firstName = scan.nextLine();
+        System.out.println("Last name: ");
+        String lastName = scan.nextLine();
+        System.out.println("Telephone number: ");
+        String strPhoneNumber = scan.nextLine();
+        int phoneNumber = Integer.parseInt(strPhoneNumber);
+        Contact newContact = new Contact(firstName, lastName, phoneNumber);
+        contactBook.addContact(newContact);
     }
 }

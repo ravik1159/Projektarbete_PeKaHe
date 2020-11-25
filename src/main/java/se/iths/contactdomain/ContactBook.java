@@ -10,4 +10,6 @@ public class ContactBook {
         this.ourContactBook = new ArrayList<>();
     }
 
+    public void addContact(Contact newContact) {
+    }
 }
