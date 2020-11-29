@@ -1,5 +1,6 @@
 package se.iths.contactdomain;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class ContactBook {
@@ -24,8 +25,7 @@ public class ContactBook {
         return -1;
          /* Enhanced for-loop som jag vill testa sen när det finns sakern man kan testa med ;)
 
-        for(Contact index: ourContactBook){
-            Contact contact = index;
+        for(Contact contact: ourContactBook){
             if(contact.getFirstName().equals(contactFirstName)){
                 return ourContactBook.indexOf(contact);
             }
@@ -33,6 +33,25 @@ public class ContactBook {
         return -1;
 
          */
+    }
+    //@Override ??
+    public Contact searchContact(String firstName){
+
+        int index = findContact(firstName);
+
+        if(index >= 0){
+            return this.ourContactBook.get(index);
+        }
+        return null;
+    }
+
+    public void printContactBook(){
+        System.out.println("Our contacts:");
+
+        for(int i = 0; i < this.ourContactBook.size(); i++){
+            System.out.println("Name: " + this.ourContactBook.get(i).getFirstName() + " " + this.ourContactBook.get(i).getLastName()
+                    + "Telephone number: " + this.ourContactBook.get(i).getTelephone());
+        }
     }
 
 }

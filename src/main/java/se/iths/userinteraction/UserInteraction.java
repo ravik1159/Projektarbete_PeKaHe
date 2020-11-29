@@ -33,27 +33,28 @@ public class UserInteraction {
         System.out.println("1 - Print contacts");
         System.out.println("2 - Add new contact");
         System.out.println("3 - Remove existing contact");
-        System.out.println("4 - Query contact exists");
+        System.out.println("4 - Search contact");
         System.out.println("5 - Print menue");
         System.out.print("Choose your action:");
     }
 
     public void choiceSwitch(int action) {
         switch (action) {
-                /*
+
             case 1:
-                .printContacts();
+                contactBook.printContactBook();
                 break;
+                /*
             case 2:
                 addNewContact();
                 break;
             case 3:
                 removeContact();
                 break;
+                 */
             case 4:
-                queryContact();
+                searchContact();
                 break;
-                */
             case 5:
                 showMenue();
                 break;
@@ -72,5 +73,23 @@ public class UserInteraction {
         int phoneNumber = Integer.parseInt(strPhoneNumber);
         Contact newContact = new Contact(firstName, lastName, phoneNumber);
         contactBook.addContact(newContact);
+    }
+
+    public void searchContact(){
+        System.out.println("Searching for a contact.");
+        System.out.print("Enter firstname:");
+        String firstName = scan.nextLine();
+
+        Contact searchContactRecord = contactBook.searchContact(firstName);
+
+        if(searchContactRecord != null){
+            System.out.println("Contact found ");
+            System.out.println("Name: " + searchContactRecord.getFirstName() + " " + searchContactRecord.getLastName() +
+                    " Telephone number: " + searchContactRecord.getTelephone());
+        }
+        else{
+            System.out.println("Contact not found");
+        }
+
     }
 }
