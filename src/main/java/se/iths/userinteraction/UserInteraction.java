@@ -47,11 +47,9 @@ public class UserInteraction {
             case 2:
                 addNewContact();
                 break;
-                /*
             case 3:
                 removeContact();
                 break;
-                 */
             case 4:
                 searchContact();
                 break;
@@ -89,6 +87,16 @@ public class UserInteraction {
         else{
             System.out.println("Contact not found");
         }
+    }
 
+    private static void removeContact() {
+        System.out.print("Enter First name of contact to be removed: ");
+        String firstName = scan.nextLine();
+        boolean contactRemoved = contactBook.removeContact(firstName);
+        if(!contactRemoved) {
+            System.out.println("Contact cannot be removed from your contact book");
+        }
+        else
+            System.out.println("contact " + firstName + " removed from contact book");
     }
 }

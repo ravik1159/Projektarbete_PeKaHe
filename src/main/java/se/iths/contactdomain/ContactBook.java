@@ -61,4 +61,19 @@ public class ContactBook {
         }
     }
 
+    public boolean removeContact(String firstName) {
+        int contactIndex = findContact(firstName);
+        if(contactIndex >=0) {
+            if (ourContactBook.remove(contactIndex) == null) {
+                System.out.println("Contact couldn't be removed from contact book");
+                return false;
+            } else {
+                System.out.println("Contact removed from contact book");
+                return true;
+            }
+        } else {
+            System.out.println("Title not found in eBook list");
+            return false;
+        }
+    }
 }
