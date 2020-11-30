@@ -25,13 +25,14 @@ public class Storage {
         }
     }
 
-    public boolean arrayListHandler() throws Exception {
+    public boolean fileContainsContacts() throws Exception {
         File yourFile = new File("contactsaves.txt");
         yourFile.createNewFile(); // if file already exists, will do nothing
-        if (isEmpty(yourFile)) {
+        if (yourFile.length() == 0) {
+            // file does not contains contacts
             return false;
         } else {
-            loadFromFile();
+            // if txt file is not empty, it will load the txt file
             return true;
         }
     }
@@ -53,16 +54,6 @@ public class Storage {
             return null;
         }
 
-    }
-
-    public boolean isEmpty(File checkFile) {
-        if(checkFile.length() == 0) {
-            System.out.println("File is empty");
-            return true;
-        } else {
-            System.out.println("File is not empty");
-            return false;
-        }
     }
 
 }

@@ -15,7 +15,8 @@ public class ContactBook {
     }
 
     public void loadOurContactBook() throws Exception{
-        if(storage.arrayListHandler()) {
+        if(storage.fileContainsContacts()) {
+            // once we know the file contains contacts, we will load info from it
             ourContactBook = storage.loadFromFile();
         }
     }

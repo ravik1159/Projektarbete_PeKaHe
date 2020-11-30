@@ -9,23 +9,22 @@ public class UserInteraction {
     private static Scanner scan = new Scanner(System.in);
     private static ContactBook contactBook = new ContactBook();
 
-    public void startMenue() throws Exception{
+    public void startMenu() throws Exception{
         contactBook.loadOurContactBook();
         //contactBook.printContactBook();
         boolean quit = false;
 
         System.out.println("\nMenu:\n---------------");
-        showMenue();
+        showMenu();
 
         while(!quit){
-            System.out.print("\nMake a choise (5 to show menu again): ");
+            System.out.print("\nMake a choice (5 to show menu again): ");
             String input = scan.nextLine();
             while(input.isEmpty() || !(input.matches("[0-5]"))) {
-                System.out.print("You must make a choise between 0 and 5 (5 to show list again): ");
+                System.out.print("You must make a choice between 0 and 5 (5 to show list again): ");
                 input = scan.nextLine();
             }
             int action = Integer.parseInt(input);
-//          scan.nextLine(); Not needed any longer as we "scan" a string instead of an int
             if (action == 0){
                 contactBook.saveOurContactBook();
                 System.out.println("\n Shutting down..");
@@ -36,15 +35,13 @@ public class UserInteraction {
         }
     }
 
-    public void showMenue(){
-//      System.out.println("Menue"); Moved this to line 16
+    public void showMenu(){
         System.out.println("0 - to shutdown");
         System.out.println("1 - Print contacts");
         System.out.println("2 - Add new contact");
         System.out.println("3 - Remove existing contact");
         System.out.println("4 - Search contact");
-        System.out.println("5 - Print menue");
-//      System.out.print("Choose your action: "); Moved to line 20
+        System.out.println("5 - Print menu");
     }
 
     public void choiceSwitch(int action) {
@@ -63,7 +60,7 @@ public class UserInteraction {
                 searchContact();
                 break;
             case 5:
-                showMenue();
+                showMenu();
                 break;
 
         }
