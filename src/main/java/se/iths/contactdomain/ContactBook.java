@@ -73,7 +73,7 @@ public class ContactBook {
                 return true;
             }
         } else {
-            System.out.println("Title not found in eBook list");
+            System.out.println("Name not found in contact book");
             return false;
         }
     }
