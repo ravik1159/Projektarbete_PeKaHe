@@ -1,40 +1,26 @@
 package se.iths.main;
 
-import se.iths.contactdomain.Contact;
-import se.iths.contactdomain.ContactBook;
-import se.iths.storage.Storage;
+
 import se.iths.userinteraction.UserInteraction;
 
-import javax.imageio.IIOException;
-import java.io.*;
-import java.util.ArrayList;
 
 public class Main {
 
     private static UserInteraction userInteraction = new UserInteraction();
-    private static Storage storage = new Storage();
-    private static ContactBook contactBook = new ContactBook();
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) throws Exception  {
 
 
+        userInteraction.startMenue();
 
-        try{
-            userInteraction.startMenue();
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
 
 
         //userInteraction.startMenue();
         //contactBook.saveOurContactBook();
-
 /*
         ArrayList<Contact> testArraylist = new ArrayList<>();
-        testArraylist.add(new Contact("Korv", "Lund", 708888000));
-        testArraylist.add(new Contact("Tjosan", "Jox", 1111111111));
-        testArraylist.add(new Contact("Karen", "JHej", 111155511));
+        testArraylist.add(new Contact("Tjosan", "Jox", "1111111111"));
+        testArraylist.add(new Contact("Karen", "JHej", "111155511"));
 
 
         try{
@@ -68,8 +54,8 @@ public class Main {
                     + "\tTelephone number: " + testArrayList2.get(i).getTelephone());
         }
 
+ */
 
-*/
 
 
     }

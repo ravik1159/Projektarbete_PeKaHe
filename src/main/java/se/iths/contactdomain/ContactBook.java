@@ -6,8 +6,8 @@ import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class ContactBook {
-    private static Storage storage = new Storage();
 
+    private static Storage storage = new Storage();
     private ArrayList<Contact> ourContactBook;
 
     public ContactBook() {
