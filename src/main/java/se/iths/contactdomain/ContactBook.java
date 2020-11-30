@@ -1,14 +1,25 @@
 package se.iths.contactdomain;
 
+import se.iths.storage.Storage;
+
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class ContactBook {
 
+    private static Storage storage = new Storage();
     private ArrayList<Contact> ourContactBook;
 
     public ContactBook() {
-        this.ourContactBook = new ArrayList<>();
+        //this.ourContactBook = new ArrayList<>();
+    }
+
+    public void loadOurContactBook() throws Exception{
+        ourContactBook = storage.loadFromFile();
+    }
+
+    public void saveOurContactBook() throws Exception{
+        storage.writeToFile(ourContactBook);
     }
 
     public void addContact(Contact newContact) {
