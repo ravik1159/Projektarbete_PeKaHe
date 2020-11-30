@@ -12,7 +12,7 @@ public class ContactBook {
     }
 
     public void addContact(Contact newContact) {
-        if(searchContact(newContact.getFirstName()) != null) {
+        if(findContact(newContact.getFirstName()) >= 0) {
             System.out.println(newContact.getFirstName() + " is already in your contactbook.");
         } else {
             ourContactBook.add(newContact);
