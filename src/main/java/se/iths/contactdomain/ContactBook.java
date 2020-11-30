@@ -11,11 +11,13 @@ public class ContactBook {
     private ArrayList<Contact> ourContactBook;
 
     public ContactBook() {
-        //this.ourContactBook = new ArrayList<>();
+        this.ourContactBook = new ArrayList<>();
     }
 
     public void loadOurContactBook() throws Exception{
-        ourContactBook = storage.loadFromFile();
+        if(storage.arrayListHandler()) {
+            ourContactBook = storage.loadFromFile();
+        }
     }
 
     public void saveOurContactBook() throws Exception{
@@ -65,11 +67,15 @@ public class ContactBook {
     }
 
     public void printContactBook(){
-        System.out.println("Our contacts:");
 
-        for(int i = 0; i < this.ourContactBook.size(); i++){
-            System.out.println("Name: " + this.ourContactBook.get(i).getFirstName() + " " + this.ourContactBook.get(i).getLastName());
-            System.out.println("Telephone number: " + this.ourContactBook.get(i).getTelephone());
+        if(ourContactBook != null && ourContactBook.size() > 0) {
+            System.out.println("Our contacts:");
+            for(int i = 0; i < this.ourContactBook.size(); i++){
+                System.out.println("Name: " + this.ourContactBook.get(i).getFirstName() + " " + this.ourContactBook.get(i).getLastName());
+                System.out.println("Telephone number: " + this.ourContactBook.get(i).getTelephone());
+            }
+        } else {
+            System.out.println("Contact book is empty");
         }
     }
 

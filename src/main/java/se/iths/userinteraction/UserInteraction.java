@@ -11,7 +11,7 @@ public class UserInteraction {
 
     public void startMenue() throws Exception{
         contactBook.loadOurContactBook();
-        contactBook.printContactBook();
+        //contactBook.printContactBook();
         boolean quit = false;
 
         System.out.println("\nMenu:\n---------------");
@@ -27,6 +27,7 @@ public class UserInteraction {
             int action = Integer.parseInt(input);
 //          scan.nextLine(); Not needed any longer as we "scan" a string instead of an int
             if (action == 0){
+                contactBook.saveOurContactBook();
                 System.out.println("\n Shutting down..");
                 quit = true;
             } else{

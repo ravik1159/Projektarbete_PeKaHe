@@ -25,11 +25,21 @@ public class Storage {
         }
     }
 
+    public boolean arrayListHandler() throws Exception {
+        File yourFile = new File("contactsaves.txt");
+        yourFile.createNewFile(); // if file already exists, will do nothing
+        if (isEmpty(yourFile)) {
+            return false;
+        } else {
+            loadFromFile();
+            return true;
+        }
+    }
+
     public ArrayList<Contact> loadFromFile() throws Exception{
 
         ArrayList<Contact> loadOurContactBook;
         try{
-
             FileInputStream fileInputStream = new FileInputStream("contactsaves.txt");
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
@@ -43,6 +53,16 @@ public class Storage {
             return null;
         }
 
+    }
+
+    public boolean isEmpty(File checkFile) {
+        if(checkFile.length() == 0) {
+            System.out.println("File is empty");
+            return true;
+        } else {
+            System.out.println("File is not empty");
+            return false;
+        }
     }
 
 }
