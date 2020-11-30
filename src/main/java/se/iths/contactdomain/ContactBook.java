@@ -1,17 +1,29 @@
 package se.iths.contactdomain;
 
+import se.iths.storage.Storage;
+
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class ContactBook {
+    private static Storage storage = new Storage();
 
     private ArrayList<Contact> ourContactBook;
 
     public ContactBook() {
-        this.ourContactBook = new ArrayList<>();
+        //this.ourContactBook = new ArrayList<>();
     }
 
-    public void addContact(Contact newContact) {
+    public void loadOurContactBook() throws Exception{
+        ourContactBook = storage.loadFromFile();
+    }
+
+    public void saveOurContactBook() throws Exception{
+        storage.writeToFile(ourContactBook);
+    }
+
+    public void addContact(Contact newContact){
+
     }
 
     private int findContact(String contactFirstName) {
@@ -48,9 +60,9 @@ public class ContactBook {
     public void printContactBook(){
         System.out.println("Our contacts:");
 
-        for(int i = 0; i < this.ourContactBook.size(); i++){
-            System.out.println("Name: " + this.ourContactBook.get(i).getFirstName() + " " + this.ourContactBook.get(i).getLastName()
-                    + "Telephone number: " + this.ourContactBook.get(i).getTelephone());
+        for(int i = 0; i < ourContactBook.size(); i++){
+            System.out.println("Name: " + ourContactBook.get(i).getFirstName() + " " + ourContactBook.get(i).getLastName()
+                    + " Telephone number: " + ourContactBook.get(i).getTelephone());
         }
     }
 
