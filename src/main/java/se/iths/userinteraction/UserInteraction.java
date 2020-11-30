@@ -9,12 +9,11 @@ public class UserInteraction {
     private static Scanner scan = new Scanner(System.in);
     private static ContactBook contactBook = new ContactBook();
 
-    public void startMenue () throws Exception{
-        contactBook.loadOurContactBook();
-        contactBook.printContactBook();
+    public void startMenue () throws Exception {
 
         boolean quit = false;
-
+        contactBook.loadOurContactBook();
+        contactBook.printContactBook();
         showMenue();
 
         while(!quit){

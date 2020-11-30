@@ -18,6 +18,7 @@ public class Main {
     public static void main(String[] args)  {
 
 
+
         try{
             userInteraction.startMenue();
         }
@@ -26,22 +27,21 @@ public class Main {
         }
 
 
+        //userInteraction.startMenue();
         //contactBook.saveOurContactBook();
 
 /*
         ArrayList<Contact> testArraylist = new ArrayList<>();
         testArraylist.add(new Contact("Korv", "Lund", 708888000));
         testArraylist.add(new Contact("Tjosan", "Jox", 1111111111));
-
-        storage.writeToFile(contactBook.saveOurContactBook());
-
+        testArraylist.add(new Contact("Karen", "JHej", 111155511));
 
 
         try{
             FileOutputStream fileOutputStream = new FileOutputStream("contactsaves.txt");
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
-            objectOutputStream.writeObject(contactArrayList);
+            objectOutputStream.writeObject(testArraylist);
             objectOutputStream.flush();
             objectOutputStream.close();
             fileOutputStream.close();
