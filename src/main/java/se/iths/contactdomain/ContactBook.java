@@ -12,8 +12,15 @@ public class ContactBook {
     }
 
     public void addContact(Contact newContact) {
+        if(searchContact(newContact.getFirstName()) != null) {
+            System.out.println(newContact.getFirstName() + " is already in your contactbook.");
+        } else {
+            ourContactBook.add(newContact);
+            System.out.println(newContact.getFirstName() + " has now been added to your contactbook.");
+        }
     }
 
+    // Kollar bara om samma FirstName finns (kollar inte på kombination med lastName eller phoneNumber)
     private int findContact(String contactFirstName) {
 
         for (int i = 0; i < ourContactBook.size(); i++) {
@@ -49,8 +56,8 @@ public class ContactBook {
         System.out.println("Our contacts:");
 
         for(int i = 0; i < this.ourContactBook.size(); i++){
-            System.out.println("Name: " + this.ourContactBook.get(i).getFirstName() + " " + this.ourContactBook.get(i).getLastName()
-                    + "Telephone number: " + this.ourContactBook.get(i).getTelephone());
+            System.out.println("Name: " + this.ourContactBook.get(i).getFirstName() + " " + this.ourContactBook.get(i).getLastName());
+            System.out.println("Telephone number: " + this.ourContactBook.get(i).getTelephone());
         }
     }
 

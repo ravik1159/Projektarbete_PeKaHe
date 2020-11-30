@@ -35,7 +35,7 @@ public class UserInteraction {
         System.out.println("3 - Remove existing contact");
         System.out.println("4 - Search contact");
         System.out.println("5 - Print menue");
-        System.out.print("Choose your action:");
+        System.out.print("Choose your action: ");
     }
 
     public void choiceSwitch(int action) {
@@ -44,10 +44,10 @@ public class UserInteraction {
             case 1:
                 contactBook.printContactBook();
                 break;
-                /*
             case 2:
                 addNewContact();
                 break;
+                /*
             case 3:
                 removeContact();
                 break;
@@ -66,11 +66,10 @@ public class UserInteraction {
         System.out.println("You are adding a new contact.");
         System.out.print("First name: ");
         String firstName = scan.nextLine();
-        System.out.println("Last name: ");
+        System.out.print("Last name: ");
         String lastName = scan.nextLine();
-        System.out.println("Telephone number: ");
-        String strPhoneNumber = scan.nextLine();
-        int phoneNumber = Integer.parseInt(strPhoneNumber);
+        System.out.print("Telephone number: ");
+        String phoneNumber = scan.nextLine();
         Contact newContact = new Contact(firstName, lastName, phoneNumber);
         contactBook.addContact(newContact);
     }
