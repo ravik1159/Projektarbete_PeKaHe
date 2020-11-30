@@ -76,8 +76,10 @@ public class UserInteraction {
         System.out.println("Searching for a contact.");
         System.out.print("Enter firstname:");
         String firstName = scan.nextLine();
+        System.out.print("Enter lastname:");
+        String lastName = scan.nextLine();
 
-        Contact searchContactRecord = contactBook.searchContact(firstName);
+        Contact searchContactRecord = contactBook.searchContact(firstName, lastName);
 
         if(searchContactRecord != null){
             System.out.println("Contact found ");
@@ -90,9 +92,11 @@ public class UserInteraction {
     }
 
     private static void removeContact() {
-        System.out.print("Enter First name of contact to be removed: ");
+        System.out.print("Enter Firstname of contact to be removed: ");
         String firstName = scan.nextLine();
-        boolean contactRemoved = contactBook.removeContact(firstName);
+        System.out.print("Enter Lastname of contact to be removed: ");
+        String lastName = scan.nextLine();
+        boolean contactRemoved = contactBook.removeContact(firstName, lastName);
         if(!contactRemoved) {
             System.out.println("Contact cannot be removed from your contact book");
         }
