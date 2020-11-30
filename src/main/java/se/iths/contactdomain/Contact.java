@@ -6,9 +6,9 @@ public class Contact implements Serializable {
 
     private String firstName;
     private String lastName;
-    private int telephone;
+    private String telephone;
 
-    public Contact(String firstName, String lastName, int telephone) {
+    public Contact(String firstName, String lastName, String telephone) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.telephone = telephone;
@@ -30,11 +30,11 @@ public class Contact implements Serializable {
         this.lastName = lastName;
     }
 
-    public int getTelephone() {
+    public String getTelephone() {
         return telephone;
     }
 
-    public void setTelephone(int telephone) {
+    public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
 }
