@@ -10,14 +10,12 @@ public class ContactBook {
     private static Storage storage = new Storage();
     private ArrayList<Contact> ourContactBook;
 
-    public ContactBook() {
-        this.ourContactBook = new ArrayList<>();
-    }
-
     public void loadOurContactBook() throws Exception{
         if(storage.fileContainsContacts()) {
             // once we know the file contains contacts, we will load info from it
             ourContactBook = storage.loadFromFile();
+        } else {
+            this.ourContactBook = new ArrayList<>();
         }
     }
 
@@ -69,11 +67,11 @@ public class ContactBook {
 
     public void printContactBook(){
 
-        if(ourContactBook != null && ourContactBook.size() > 0) {
+        if(ourContactBook.size() > 0) {
             System.out.println("Our contacts:");
-            for(int i = 0; i < this.ourContactBook.size(); i++){
-                System.out.println("Name: " + this.ourContactBook.get(i).getFirstName() + " " + this.ourContactBook.get(i).getLastName());
-                System.out.println("Telephone number: " + this.ourContactBook.get(i).getTelephone());
+            for (Contact contact : this.ourContactBook) {
+                System.out.println("Name: " + contact.getFirstName() + " " + contact.getLastName());
+                System.out.println("Telephone number: " + contact.getTelephone());
             }
         } else {
             System.out.println("Contact book is empty");
