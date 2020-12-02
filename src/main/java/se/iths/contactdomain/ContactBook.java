@@ -10,7 +10,7 @@ public class ContactBook {
     private static Storage storage = new Storage();
     private ArrayList<Contact> ourContactBook;
 
-    public void loadOurContactBook() throws Exception{
+    public void loadOurContactBook() {
         if(storage.fileContainsContacts()) {
             // once we know the file contains contacts, we will load info from it
             ourContactBook = storage.loadFromFile();
@@ -19,7 +19,7 @@ public class ContactBook {
         }
     }
 
-    public void saveOurContactBook() throws Exception{
+    public void saveOurContactBook() {
         storage.writeToFile(ourContactBook);
     }
 

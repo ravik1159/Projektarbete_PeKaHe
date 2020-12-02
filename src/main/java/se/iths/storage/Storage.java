@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Storage {
 
-    public void writeToFile(ArrayList contactArrayList) throws Exception {
+    public void writeToFile(ArrayList contactArrayList) {
 
         try{
             FileOutputStream fileOutputStream = new FileOutputStream("contactsaves.txt");
@@ -20,24 +20,30 @@ public class Storage {
             objectOutputStream.close();
             fileOutputStream.close();
         }
-        catch (IIOException ioe){
-            ioe.printStackTrace();
+        catch (IOException e){
+            e.printStackTrace();
         }
     }
 
-    public boolean fileContainsContacts() throws Exception {
-        File yourFile = new File("contactsaves.txt");
-        yourFile.createNewFile(); // if file already exists, will do nothing
-        if (yourFile.length() == 0) {
-            // file does not contains contacts
+    public boolean fileContainsContacts()  {
+        try {
+            File yourFile = new File("contactsaves.txt");
+            yourFile.createNewFile(); // if file already exists, will do nothing
+            if (yourFile.length() == 0) {
+                // file does not contains contacts
+                return false;
+            } else {
+                // if txt file is not empty, it will load the txt file
+                return true;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
             return false;
-        } else {
-            // if txt file is not empty, it will load the txt file
-            return true;
         }
+
     }
 
-    public ArrayList<Contact> loadFromFile() throws Exception{
+    public ArrayList<Contact> loadFromFile() {
 
         ArrayList<Contact> loadOurContactBook;
         try{
@@ -49,8 +55,8 @@ public class Storage {
             fileInputStream.close();
             return loadOurContactBook;
 
-        } catch (IOException ioe){
-            ioe.printStackTrace();
+        } catch (IOException | ClassNotFoundException exc){
+            exc.printStackTrace();
             return null;
         }
 
