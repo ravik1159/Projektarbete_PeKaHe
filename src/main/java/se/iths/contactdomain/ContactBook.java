@@ -1,6 +1,8 @@
 package se.iths.contactdomain;
 
 import se.iths.storage.Storage;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ContactBook {
@@ -8,13 +10,21 @@ public class ContactBook {
     private static Storage storage = new Storage();
     private ArrayList<Contact> ourContactBook;
 
-    public void loadOurContactBook() throws Exception{
-        if(storage.fileContainsContacts()) {
-            // once we know the file contains contacts, we will load info from it
+    public void loadOurContactBook() {
+        //Petra: New version
+        try {
             ourContactBook = storage.loadFromFile();
-        } else {
-            this.ourContactBook = new ArrayList<>();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+        //Petra: Old version
+//        if(storage.fileContainsContacts()) {
+//            // once we know the file contains contacts, we will load info from it
+//            ourContactBook = storage.loadFromFile();
+//        } else {
+//            this.ourContactBook = new ArrayList<>();
+//        }
     }
 
     public void saveOurContactBook() throws Exception{
