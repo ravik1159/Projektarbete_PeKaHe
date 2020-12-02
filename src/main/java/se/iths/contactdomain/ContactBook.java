@@ -1,6 +1,4 @@
 package se.iths.contactdomain;
-
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class ContactBook {
@@ -23,25 +21,15 @@ public class ContactBook {
     // Kontrollerar För- och Efternamn mot ourContactBook
     private int findContact(String contactFirstName, String contactLastName) {
 
-        for (int i = 0; i < ourContactBook.size(); i++) {
-            Contact contact = this.ourContactBook.get(i);
-            if (contact.getFirstName().toLowerCase().trim().equals(contactFirstName.toLowerCase().trim()) &&
-                    contact.getLastName().toLowerCase().trim().equals(contactLastName.toLowerCase().trim())) {
-                return i;
-            }
-        }
-        return -1;
-         /* Enhanced for-loop som jag vill testa sen när det finns sakern man kan testa med ;)
-
         for(Contact contact: ourContactBook){
-            if(contact.getFirstName().equals(contactFirstName)){
+            if(contact.getFirstName().toLowerCase().trim().equals(contactFirstName.toLowerCase().trim()) &&
+                    contact.getLastName().toLowerCase().trim().equals(contactLastName.toLowerCase().trim())){
                 return ourContactBook.indexOf(contact);
             }
         }
         return -1;
-
-         */
     }
+
     //@Override ??
     public Contact searchContact(String firstName, String lastName){
 
@@ -56,9 +44,9 @@ public class ContactBook {
     public void printContactBook(){
         System.out.println("Our contacts:");
 
-        for(int i = 0; i < this.ourContactBook.size(); i++){
-            System.out.println("Name: " + this.ourContactBook.get(i).getFirstName() + " " + this.ourContactBook.get(i).getLastName());
-            System.out.println("Telephone number: " + this.ourContactBook.get(i).getTelephone());
+        for (Contact contact : this.ourContactBook) {
+            System.out.println("Name: " + contact.getFirstName() + " " + contact.getLastName());
+            System.out.println("Telephone number: " + contact.getTelephone());
         }
     }
 
