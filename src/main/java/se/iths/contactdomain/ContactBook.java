@@ -2,6 +2,7 @@ package se.iths.contactdomain;
 
 import se.iths.storage.Storage;
 
+import java.io.IOException;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 
@@ -82,14 +83,20 @@ public class ContactBook {
         int contactIndex = findContact(firstName, lastName);
         if(contactIndex >=0) {
             if (ourContactBook.remove(contactIndex) == null) {
-                System.out.println("Contact couldn't be removed from contact book");
+            //"Contact couldn't be removed from contact book"
                 return false;
             } else {
-                System.out.println("Contact removed from contact book");
+                try {
+                    storage.writeToFile(ourContactBook);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    System.out.println("Updated contactbook couldn't be saved to file");
+                }
+                //"Contact removed from contact book"
                 return true;
             }
         } else {
-            System.out.println("Name not found in contact book");
+            //index <0 i.e. "Name not found in contact book"
             return false;
         }
     }
