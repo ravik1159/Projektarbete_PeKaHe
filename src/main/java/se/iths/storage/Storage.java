@@ -1,15 +1,12 @@
 package se.iths.storage;
 
 import se.iths.contactdomain.Contact;
-import se.iths.contactdomain.ContactBook;
-
-import javax.imageio.IIOException;
 import java.io.*;
 import java.util.ArrayList;
 
 public class Storage {
 
-    public void writeToFile(ArrayList contactArrayList) throws Exception {
+    public void writeToFile(ArrayList<Contact> contactArrayList) throws Exception {
 
         try{
             FileOutputStream fileOutputStream = new FileOutputStream("contactsaves.txt");
@@ -20,7 +17,7 @@ public class Storage {
             objectOutputStream.close();
             fileOutputStream.close();
         }
-        catch (IIOException ioe){
+        catch (IOException ioe){
             ioe.printStackTrace();
         }
     }
@@ -52,6 +49,8 @@ public class Storage {
         } catch (IOException ioe){
             ioe.printStackTrace();
             return null;
+            //Lägga till Classnotfoundexception också?? Kanske file not found exception?
+            // //Se exempel i boken från Karen och videon av Pontus
         }
 
     }
