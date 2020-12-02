@@ -25,10 +25,15 @@ public class ContactBook {
 
     public void addContact(Contact newContact) {
         if(findContact(newContact.getFirstName(), newContact.getLastName()) >= 0) {
-            System.out.println(newContact.getFirstName() + " is already in your contactbook.");
+            System.out.println(newContact.getFirstName() + " is already in your contact book.");
         } else {
-            ourContactBook.add(newContact);
-            System.out.println(newContact.getFirstName() + " has now been added to your contactbook.");
+            if(ourContactBook.add(newContact)) {
+                System.out.println(newContact.getFirstName() + " has now been added to your contact book.");
+                saveOurContactBook();
+            } else {
+                System.out.println("Something went wrong, contact could not be added to your contact book");
+            }
+
         }
     }
 
