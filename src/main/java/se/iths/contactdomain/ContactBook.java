@@ -88,7 +88,7 @@ public class ContactBook {
             } else {
                 try {
                     storage.writeToFile(ourContactBook);
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                     System.out.println("Updated contactbook couldn't be saved to file");
                 }
