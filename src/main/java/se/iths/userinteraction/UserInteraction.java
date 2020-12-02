@@ -3,15 +3,20 @@ package se.iths.userinteraction;
 import se.iths.contactdomain.Contact;
 import se.iths.contactdomain.ContactBook;
 
+import javax.imageio.IIOException;
 import java.util.Scanner;
 
 public class UserInteraction {
     private static Scanner scan = new Scanner(System.in);
     private static ContactBook contactBook = new ContactBook();
 
-    public void startMenu() throws Exception{
-        contactBook.loadOurContactBook();
-        //contactBook.printContactBook();
+    public void startMenu() {
+        try {
+            contactBook.loadOurContactBook();
+            //contactBook.printContactBook();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         boolean quit = false;
 
         System.out.println("\nMenu:\n---------------");
@@ -26,7 +31,12 @@ public class UserInteraction {
             }
             int action = Integer.parseInt(input);
             if (action == 0){
-                contactBook.saveOurContactBook();
+                try {
+                    contactBook.saveOurContactBook();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.out.println("Contactbook cannot be saved to file");
+                }
                 System.out.println("\n Shutting down..");
                 quit = true;
             } else{
