@@ -1,12 +1,24 @@
 package se.iths.contactdomain;
+
+import se.iths.storage.Storage;
 import java.util.ArrayList;
 
 public class ContactBook {
 
+    private static Storage storage = new Storage();
     private ArrayList<Contact> ourContactBook;
 
-    public ContactBook() {
-        this.ourContactBook = new ArrayList<>();
+    public void loadOurContactBook() throws Exception{
+        if(storage.fileContainsContacts()) {
+            // once we know the file contains contacts, we will load info from it
+            ourContactBook = storage.loadFromFile();
+        } else {
+            this.ourContactBook = new ArrayList<>();
+        }
+    }
+
+    public void saveOurContactBook() throws Exception{
+        storage.writeToFile(ourContactBook);
     }
 
     public void addContact(Contact newContact) {
@@ -42,11 +54,15 @@ public class ContactBook {
     }
 
     public void printContactBook(){
-        System.out.println("Our contacts:");
 
-        for (Contact contact : this.ourContactBook) {
-            System.out.println("Name: " + contact.getFirstName() + " " + contact.getLastName());
-            System.out.println("Telephone number: " + contact.getTelephone());
+        if(ourContactBook.size() > 0) {
+            System.out.println("Our contacts:");
+            for (Contact contact : this.ourContactBook) {
+                System.out.println("Name: " + contact.getFirstName() + " " + contact.getLastName());
+                System.out.println("Telephone number: " + contact.getTelephone());
+            }
+        } else {
+            System.out.println("Contact book is empty");
         }
     }
 
