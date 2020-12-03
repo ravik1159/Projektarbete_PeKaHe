@@ -1,10 +1,8 @@
 package se.iths.contactdomain;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +23,12 @@ class ContactBookTest {
         testContacts.add(cont2);
         testContacts.add(cont3);
         addedContacts = new ContactBook(testContacts, testStorageFile);
+    }
+
+    @AfterEach
+    void tearDown() {
+        File file = new File(testStorageFile);
+        file.delete();
     }
 
     @Test
