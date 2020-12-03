@@ -3,7 +3,6 @@ package se.iths.userinteraction;
 import se.iths.contactdomain.Contact;
 import se.iths.contactdomain.ContactBook;
 
-import javax.imageio.IIOException;
 import java.util.Scanner;
 
 public class UserInteraction {
@@ -11,12 +10,8 @@ public class UserInteraction {
     private static ContactBook contactBook = new ContactBook();
 
     public void startMenu() {
-        try {
-            contactBook.loadOurContactBook();
-            //contactBook.printContactBook();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        contactBook.loadOurContactBook();
+        //contactBook.printContactBook();
         boolean quit = false;
 
         System.out.println("\nMenu:\n---------------");
