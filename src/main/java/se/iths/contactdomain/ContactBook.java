@@ -14,6 +14,11 @@ public class ContactBook {
         this.ourContactBook = storage.loadFromFile(fileName);
     }
 
+    public ContactBook(ArrayList<Contact> ourContactBook, String fileName) {
+        this.ourContactBook = ourContactBook;
+        this.fileName = fileName;
+    }
+
     public ContactBook(ArrayList<Contact> listOfContacts) {
         this.ourContactBook = listOfContacts;
     }
