@@ -33,7 +33,11 @@ class ContactBookTest {
 
     @Test
     void saveOurContactBook() {
-        fail("Not implemented");
+        File file = new File(testStorageFile);
+        file.delete();
+        assertFalse(file.exists());  //Double check that file is deleted before saving
+        addedContacts.saveOurContactBook();
+        assertTrue(file.exists());
     }
 
     @Test
