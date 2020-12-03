@@ -16,7 +16,7 @@ class ContactBookTest {
 //    private static Contact cont2;
 //    private static Contact cont3;
 
-    @BeforeAll
+    @BeforeEach
     static void setup() {
         ArrayList<Contact> testContacts = new ArrayList<>(); //Needed to be able to add Contacts to arraylist using the standard add method instead of our own addContact method
         Contact cont1 = new Contact("Petra", "Andreasson", "077436436");
