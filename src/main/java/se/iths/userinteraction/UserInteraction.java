@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class UserInteraction {
     private static Scanner scan = new Scanner(System.in);
-    private static ContactBook contactBook = new ContactBook();
+    private static ContactBook contactBook = new ContactBook("contactsaves.txt");
 
     public void startMenu() {
 

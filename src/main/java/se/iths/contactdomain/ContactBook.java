@@ -4,19 +4,20 @@ import se.iths.storage.Storage;
 import java.util.ArrayList;
 
 public class ContactBook {
+
     private static Storage storage = new Storage();
     private ArrayList<Contact> ourContactBook;
+    private String fileName;
 
-    public ArrayList<Contact> getOurContactBook() {
-        return ourContactBook;
-    }
 
-    public ContactBook() {
-        this.ourContactBook = storage.loadFromFile();
+
+    public ContactBook(String fileName) {
+        this.fileName = fileName;
+        this.ourContactBook = storage.loadFromFile(fileName);
     }
 
     public void saveOurContactBook() {
-        storage.writeToFile(ourContactBook);
+          storage.writeToFile(ourContactBook, fileName);
     }
 
     public void addContact(Contact newContact) {
@@ -71,7 +72,7 @@ public class ContactBook {
                 //"Contact couldn't be removed from contact book"
                 return false;
             } else {
-                storage.writeToFile(ourContactBook);
+                saveOurContactBook();
                 //"Contact removed from contact book"
                 return true;
             }
@@ -79,5 +80,9 @@ public class ContactBook {
             //index <0 i.e. "Name not found in contact book"
             return false;
         }
+    }
+
+    public ArrayList<Contact> getOurContactBook() {
+        return ourContactBook;
     }
 }

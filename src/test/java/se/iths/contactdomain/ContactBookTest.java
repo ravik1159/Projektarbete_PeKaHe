@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ContactBookTest {
 
-    private static ContactBook contactBook = new ContactBook();
+    private static ContactBook contactBook = new ContactBook("testsaves.txt");
    // private static ContactBook addedContacts;
     //private static Contact cont1;
     //private static Contact cont2;
@@ -25,13 +25,11 @@ class ContactBookTest {
         //Contact cont2 = new Contact("Helena", "Lundström", "943743587");
         //Contact cont3 = new Contact("Karen", "Batjes", "73428465");
 
-
        // testContacts.add(cont1);
         //testContacts.add(cont2);
         //testContacts.add(cont3);
-       // addedContacts = (ArrayList<Contact>) testContacts;
+       //addedContacts = (ArrayList<Contact>) testContact;
     }
-
 
     @Test
     void saveOurContactBook() {
@@ -53,10 +51,10 @@ class ContactBookTest {
         assertEquals(3, foundContacts.size());
     }
 
-    @Disabled
+    @Test
     void searchContact() {
-       // assertEquals(0, contactBook.searchContact("Petra", "Andreasson"));
-
+        fail("Not implemented");
+       //assertEquals(0, contactBook.searchContact("Petra", "Andreasson"));
     }
 
     @Test
@@ -64,7 +62,7 @@ class ContactBookTest {
         fail("Not implemented");
     }
 
-    @Disabled
+    @Test
     void removeContact() {
         fail("Not implemented");
         //assertTrue(addedContacts.removeContact("Petra", "Andreasson"));
