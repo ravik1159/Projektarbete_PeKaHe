@@ -2,7 +2,9 @@ package se.iths.contactdomain;
 
 import org.junit.jupiter.api.*;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +14,8 @@ class ContactBookTest {
 
     private static String testStorageFile = "testsaves.txt";
     private static ContactBook addedContacts;
+    private final PrintStream standardOut = System.out;
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
     @BeforeEach
     void setup() {
@@ -29,6 +33,8 @@ class ContactBookTest {
     void tearDown() {
         File file = new File(testStorageFile);
         file.delete();
+
+        System.setOut(standardOut);
     }
 
     @Test
@@ -41,7 +47,7 @@ class ContactBookTest {
     }
 
     @Test
-    void addContact() {
+    void testAddContact() {
         Contact cont1 = new Contact("Petra", "Andreasson", "077436436");
         Contact cont2 = new Contact("Kalle", "Anka", "943743587");
         Contact cont3 = new Contact("KALLE", "anka", "73428465");
@@ -60,8 +66,10 @@ class ContactBookTest {
     }
 
     @Test
-    void printContactBook() {
-        fail("Not implemented");
+    void testPrintContactBookNotEmpty() {
+        System.setOut(new PrintStream(outputStreamCaptor));
+        addedContacts.printContactBook();
+        assertNotEquals("Contact book is empty", outputStreamCaptor.toString().trim());
     }
 
     @Test
