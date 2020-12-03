@@ -77,12 +77,12 @@ public class ContactBook {
                 //"Contact couldn't be removed from contact book"
                 return false;
             } else {
-                storage.writeToFile(ourContactBook);
+                saveOurContactBook();
                 //"Contact removed from contact book"
                 return true;
             }
         } else {
-            //index <0 i.e. "Name not found in contact book"
+            System.out.println("Name not found in contact book");
             return false;
         }
     }
