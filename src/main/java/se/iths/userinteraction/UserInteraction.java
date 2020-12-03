@@ -10,8 +10,7 @@ public class UserInteraction {
     private static ContactBook contactBook = new ContactBook();
 
     public void startMenu() {
-//        contactBook.loadOurContactBook();
-        //contactBook.printContactBook();
+
         boolean quit = false;
 
         System.out.println("\nMenu:\n---------------");
@@ -62,7 +61,6 @@ public class UserInteraction {
             case 5:
                 showMenu();
                 break;
-
         }
     }
 
@@ -75,7 +73,9 @@ public class UserInteraction {
         System.out.print("Telephone number: ");
         String phoneNumber = scan.nextLine();
         Contact newContact = new Contact(firstName, lastName, phoneNumber);
-        contactBook.addContact(newContact);
+        if(contactBook.addContact(newContact)) {
+            System.out.println(newContact.getFirstName() + " has now been added and saved to your contact book.");
+        }
     }
 
     public void searchContact(){

@@ -23,15 +23,17 @@ public class ContactBook {
         storage.writeToFile(ourContactBook);
     }
 
-    public void addContact(Contact newContact) {
+    public boolean addContact(Contact newContact) {
         if(findContact(newContact.getFirstName(), newContact.getLastName()) >= 0) {
             System.out.println(newContact.getFirstName() + " is already in your contact book.");
+            return false;
         } else {
             if(ourContactBook.add(newContact)) {
-                System.out.println(newContact.getFirstName() + " has now been added to your contact book.");
                 saveOurContactBook();
+                return true;
             } else {
                 System.out.println("Something went wrong, contact could not be added to your contact book");
+                return false;
             }
         }
     }
@@ -48,7 +50,6 @@ public class ContactBook {
         return -1;
     }
 
-    //@Override ??
     public Contact searchContact(String firstName, String lastName){
         int index = findContact(firstName, lastName);
         if(index >= 0){
