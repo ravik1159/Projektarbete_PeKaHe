@@ -16,21 +16,10 @@ public class Storage {
             fileOutputStream.close();
         }
         catch (IOException ioe){
+            System.out.println("Unable to save to file");
             ioe.printStackTrace();
         }
     }
-//Petra: moved this method to loadFromFile. Delete the block if OK or uncomment and restore code as it was
-//    public boolean fileContainsContacts() throws Exception {
-//        File yourFile = new File("contactsaves.txt");
-//        yourFile.createNewFile(); // if file already exists, will do nothing
-//        if (yourFile.length() == 0) {
-//            // file does not contains contacts
-//            return false;
-//        } else {
-//            // if txt file is not empty, it will load the txt file
-//            return true;
-//        }
-//    }
 
     public ArrayList<Contact> loadFromFile() {
         ArrayList<Contact> loadOurContactBook;
@@ -48,8 +37,8 @@ public class Storage {
                 fileInputStream.close();
             }
             return loadOurContactBook;
-
         } catch (IOException | ClassNotFoundException ioe){
+            System.out.println("Unable to load from file");
             ioe.printStackTrace();
             return null;
         }

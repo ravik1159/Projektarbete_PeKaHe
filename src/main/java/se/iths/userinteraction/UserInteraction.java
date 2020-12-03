@@ -26,12 +26,7 @@ public class UserInteraction {
             }
             int action = Integer.parseInt(input);
             if (action == 0){
-                try {
-                    contactBook.saveOurContactBook();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    System.out.println("Contactbook cannot be saved to file");
-                }
+                contactBook.saveOurContactBook();
                 System.out.println("\n Shutting down..");
                 quit = true;
             } else{

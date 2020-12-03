@@ -1,8 +1,6 @@
 package se.iths.contactdomain;
 
 import se.iths.storage.Storage;
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class ContactBook {
@@ -11,20 +9,7 @@ public class ContactBook {
     private ArrayList<Contact> ourContactBook;
 
     public void loadOurContactBook() {
-        //Petra: New version
-        try {
-            ourContactBook = storage.loadFromFile();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        //Petra: Old version
-//        if(storage.fileContainsContacts()) {
-//            // once we know the file contains contacts, we will load info from it
-//            ourContactBook = storage.loadFromFile();
-//        } else {
-//            this.ourContactBook = new ArrayList<>();
-//        }
+        ourContactBook = storage.loadFromFile();
     }
 
     public void saveOurContactBook() {
@@ -41,7 +26,6 @@ public class ContactBook {
             } else {
                 System.out.println("Something went wrong, contact could not be added to your contact book");
             }
-
         }
     }
 
@@ -59,9 +43,7 @@ public class ContactBook {
 
     //@Override ??
     public Contact searchContact(String firstName, String lastName){
-
         int index = findContact(firstName, lastName);
-
         if(index >= 0){
             return this.ourContactBook.get(index);
         }
@@ -69,7 +51,6 @@ public class ContactBook {
     }
 
     public void printContactBook(){
-
         if(ourContactBook.size() > 0) {
             System.out.println("Our contacts:");
             for (Contact contact : this.ourContactBook) {
@@ -85,15 +66,10 @@ public class ContactBook {
         int contactIndex = findContact(firstName, lastName);
         if(contactIndex >=0) {
             if (ourContactBook.remove(contactIndex) == null) {
-            //"Contact couldn't be removed from contact book"
+                //"Contact couldn't be removed from contact book"
                 return false;
             } else {
-                try {
-                    storage.writeToFile(ourContactBook);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    System.out.println("Updated contactbook couldn't be saved to file");
-                }
+                storage.writeToFile(ourContactBook);
                 //"Contact removed from contact book"
                 return true;
             }
