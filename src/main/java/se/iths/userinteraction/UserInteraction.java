@@ -10,8 +10,7 @@ public class UserInteraction {
     private static ContactBook contactBook = new ContactBook();
 
     public void startMenu() {
-//        contactBook.loadOurContactBook();
-        //contactBook.printContactBook();
+
         boolean quit = false;
 
         System.out.println("\nMenu:\n---------------");
@@ -62,7 +61,6 @@ public class UserInteraction {
             case 5:
                 showMenu();
                 break;
-
         }
     }
 

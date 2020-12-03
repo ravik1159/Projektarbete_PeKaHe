@@ -12,10 +12,6 @@ class ContactBookTest {
     }
 
     @Test
-    void loadOurContactBook() {
-    }
-
-    @Test
     void saveOurContactBook() {
     }
 

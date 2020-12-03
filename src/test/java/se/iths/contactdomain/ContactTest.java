@@ -11,22 +11,11 @@ class ContactTest {
     }
 
     @Test
-    void setFirstName() {
-    }
-
-    @Test
     void getLastName() {
-    }
-
-    @Test
-    void setLastName() {
     }
 
     @Test
     void getTelephone() {
     }
 
-    @Test
-    void setTelephone() {
-    }
 }

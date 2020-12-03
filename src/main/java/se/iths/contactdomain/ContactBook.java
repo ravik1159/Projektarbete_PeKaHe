@@ -40,7 +40,6 @@ public class ContactBook {
         return -1;
     }
 
-    //@Override ??
     public Contact searchContact(String firstName, String lastName){
         int index = findContact(firstName, lastName);
         if(index >= 0){

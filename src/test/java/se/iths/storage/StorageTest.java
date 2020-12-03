@@ -16,10 +16,6 @@ class StorageTest {
     }
 
     @Test
-    void fileContainsContacts() {
-    }
-
-    @Test
     void loadFromFile() {
     }
 }
