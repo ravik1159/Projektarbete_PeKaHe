@@ -5,10 +5,18 @@ import java.util.ArrayList;
 
 public class ContactBook {
     private static Storage storage = new Storage();
-    private ArrayList<Contact> ourContactBook;
+    private static ArrayList<Contact> ourContactBook;
 
     public ContactBook() {
         this.ourContactBook = storage.loadFromFile();
+    }
+
+    public ContactBook(ArrayList<Contact> listOfContacts) {
+        this.ourContactBook = listOfContacts;
+    }
+
+    public ArrayList<Contact> getListOfContacts() {
+        return ourContactBook;
     }
 
     public void saveOurContactBook() {
