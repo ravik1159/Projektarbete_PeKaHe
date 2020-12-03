@@ -14,11 +14,12 @@ public class ContactBook {
         this.ourContactBook = storage.loadFromFile(fileName);
     }
 
-    public ContactBook(ArrayList<Contact> listOfContacts) {
+    public ContactBook(ArrayList<Contact> listOfContacts, String fileName) {
+        this.fileName = fileName;
         this.ourContactBook = listOfContacts;
     }
 
-    public ArrayList<Contact> getListOfContacts() {
+    public ArrayList<Contact> getOurContactBook() {
         return ourContactBook;
     }
 
@@ -88,9 +89,5 @@ public class ContactBook {
             System.out.println("Name not found in contact book");
             return false;
         }
-    }
-
-    public ArrayList<Contact> getOurContactBook() {
-        return ourContactBook;
     }
 }

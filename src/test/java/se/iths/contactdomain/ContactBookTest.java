@@ -12,15 +12,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ContactBookTest {
 
-    private static ContactBook contactBook = new ContactBook("testsaves.txt");
+    private static String testStorageFile = "testsaves.txt";
     private static ContactBook addedContacts;
-    // private static ContactBook addedContacts;
-    //private static Contact cont1;
-    //private static Contact cont2;
-    //private static Contact cont3;
 
     @BeforeEach
-    static void setup() {
+    void setup() {
         ArrayList<Contact> testContacts = new ArrayList<>(); //Needed to be able to add Contacts to arraylist using the standard add method instead of our own addContact method
         Contact cont1 = new Contact("Petra", "Andreasson", "077436436");
         Contact cont2 = new Contact("Helena", "Lundström", "943743587");
@@ -28,11 +24,7 @@ class ContactBookTest {
         testContacts.add(cont1);
         testContacts.add(cont2);
         testContacts.add(cont3);
-        addedContacts = new ContactBook(testContacts);
-    }
-
-    @BeforeEach
-    void setUp() {
+        addedContacts = new ContactBook(testContacts, testStorageFile);
     }
 
     @Test
@@ -43,16 +35,14 @@ class ContactBookTest {
     @Test
     void addContact() {
         Contact cont1 = new Contact("Petra", "Andreasson", "077436436");
-        Contact cont2 = new Contact("Helena", "Lundström", "943743587");
-        Contact cont3 = new Contact("Karen", "Batjes", "73428465");
+        Contact cont2 = new Contact("Kalle", "Anka", "943743587");
+        Contact cont3 = new Contact("KALLE", "anka", "73428465");
 
-        contactBook.addContact(cont1);
-        contactBook.addContact(cont2);
-        contactBook.addContact(cont3);
+        assertFalse(addedContacts.addContact(cont1));
+        assertTrue(addedContacts.addContact(cont2));
+        assertFalse(addedContacts.addContact(cont3));
 
-        List<Contact> foundContacts = contactBook.getOurContactBook();
-
-        assertEquals(3, foundContacts.size());
+        assertEquals(4, addedContacts.getOurContactBook().size());
     }
 
     @Test
@@ -70,6 +60,6 @@ class ContactBookTest {
     void removeContact() {
         assertTrue(addedContacts.removeContact("Petra", "Andreasson"));
         assertFalse(addedContacts.removeContact("Kurt","j342k!#"));
-        assertEquals(2, addedContacts.getListOfContacts().size());
+        assertEquals(2, addedContacts.getOurContactBook().size());
     }
 }

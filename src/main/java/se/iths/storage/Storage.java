@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 public class Storage {
 
-    public void writeToFile(ArrayList<Contact> contactArrayList, String name)  {
+    public void writeToFile(ArrayList<Contact> contactArrayList, String fileName)  {
         try{
-            FileOutputStream fileOutputStream = new FileOutputStream(name);
+            FileOutputStream fileOutputStream = new FileOutputStream(fileName);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(contactArrayList);
             objectOutputStream.flush();
@@ -21,10 +21,10 @@ public class Storage {
         }
     }
 
-    public ArrayList<Contact> loadFromFile(String name) {
+    public ArrayList<Contact> loadFromFile(String fileName) {
         ArrayList<Contact> loadOurContactBook;
         try{
-            File yourFile = new File(name);
+            File yourFile = new File(fileName);
             yourFile.createNewFile(); // if file already exists, will do nothing
             if (yourFile.length() == 0) {
                 // file does not contains contacts
