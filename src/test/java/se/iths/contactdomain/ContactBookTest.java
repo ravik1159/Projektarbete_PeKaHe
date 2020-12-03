@@ -70,4 +70,10 @@ class ContactBookTest {
         assertFalse(addedContacts.removeContact("Kurt","j342k!#"));
         assertEquals(2, addedContacts.getOurContactBook().size());
     }
+
+    // Vi har valt att inte testa metoden findContact() i ContactBook i och med att det är en privat metod.
+    //Metoden testas indirekt genom testAddContact, testSearchContact och testRemoveContact.
+    @Disabled
+    void testFindContact(){
+    }
 }
