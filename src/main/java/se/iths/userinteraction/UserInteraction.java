@@ -75,7 +75,9 @@ public class UserInteraction {
         System.out.print("Telephone number: ");
         String phoneNumber = scan.nextLine();
         Contact newContact = new Contact(firstName, lastName, phoneNumber);
-        contactBook.addContact(newContact);
+        if(contactBook.addContact(newContact)) {
+            System.out.println(newContact.getFirstName() + " has now been added and saved to your contact book.");
+        }
     }
 
     public void searchContact(){
