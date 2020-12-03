@@ -4,12 +4,11 @@ import se.iths.storage.Storage;
 import java.util.ArrayList;
 
 public class ContactBook {
-
     private static Storage storage = new Storage();
     private ArrayList<Contact> ourContactBook;
 
-    public void loadOurContactBook() {
-        ourContactBook = storage.loadFromFile();
+    public ContactBook() {
+        this.ourContactBook = storage.loadFromFile();
     }
 
     public void saveOurContactBook() {

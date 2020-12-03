@@ -10,7 +10,7 @@ public class UserInteraction {
     private static ContactBook contactBook = new ContactBook();
 
     public void startMenu() {
-        contactBook.loadOurContactBook();
+//        contactBook.loadOurContactBook();
         //contactBook.printContactBook();
         boolean quit = false;
 
