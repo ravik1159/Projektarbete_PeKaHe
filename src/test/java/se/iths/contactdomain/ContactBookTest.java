@@ -66,10 +66,19 @@ class ContactBookTest {
     }
 
     @Test
-    void testPrintContactBookNotEmpty() {
+    void testPrintContactBook_NotEmpty() {
         System.setOut(new PrintStream(outputStreamCaptor));
         addedContacts.printContactBook();
         assertNotEquals("Contact book is empty", outputStreamCaptor.toString().trim());
+    }
+
+    @Test
+    void testPrintContactBook_IsEmpty() {
+        ArrayList<Contact> testNoContacts = new ArrayList<>();
+        ContactBook addedNoContacts = new ContactBook(testNoContacts, testStorageFile);
+        System.setOut(new PrintStream(outputStreamCaptor));
+        addedNoContacts.printContactBook();
+        assertEquals("Contact book is empty", outputStreamCaptor.toString().trim());
     }
 
     @Test
