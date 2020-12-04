@@ -16,13 +16,17 @@ class ContactBookTest {
     private static ContactBook addedContacts;
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    private Contact cont1 = new Contact("Petra", "Andreasson", "077436436");
+    private Contact cont2 = new Contact("Helena", "Lundström", "943743587");
+    private Contact cont3 = new Contact("Karen", "Batjes", "73428465");
 
     @BeforeEach
     void setup() {
         ArrayList<Contact> testContacts = new ArrayList<>(); //Needed to be able to add Contacts to arraylist using the standard add method instead of our own addContact method
-        Contact cont1 = new Contact("Petra", "Andreasson", "077436436");
-        Contact cont2 = new Contact("Helena", "Lundström", "943743587");
-        Contact cont3 = new Contact("Karen", "Batjes", "73428465");
+        // Har flyttat upp contact objecter, så att andra testSearchContact har tillgång till dem
+//        Contact cont1 = new Contact("Petra", "Andreasson", "077436436");
+//        Contact cont2 = new Contact("Helena", "Lundström", "943743587");
+//        Contact cont3 = new Contact("Karen", "Batjes", "73428465");
         testContacts.add(cont1);
         testContacts.add(cont2);
         testContacts.add(cont3);
@@ -48,21 +52,26 @@ class ContactBookTest {
 
     @Test
     void testAddContact() {
-        Contact cont1 = new Contact("Petra", "Andreasson", "077436436");
-        Contact cont2 = new Contact("Kalle", "Anka", "943743587");
-        Contact cont3 = new Contact("KALLE", "anka", "73428465");
+        Contact cont4 = new Contact("Petra", "Andreasson", "077436436");
+        Contact cont5 = new Contact("Kalle", "Anka", "943743587");
+        Contact cont6 = new Contact("KALLE", "anka", "73428465");
 
-        assertFalse(addedContacts.addContact(cont1));
-        assertTrue(addedContacts.addContact(cont2));
-        assertFalse(addedContacts.addContact(cont3));
+        assertFalse(addedContacts.addContact(cont4));
+        assertTrue(addedContacts.addContact(cont5));
+        assertFalse(addedContacts.addContact(cont6));
 
         assertEquals(4, addedContacts.getOurContactBook().size());
     }
 
     @Test
-    void searchContact() {
-        fail("Not implemented");
-       //assertEquals(0, contactBook.searchContact("Petra", "Andreasson"));
+    void testSearchContact() {
+        assertNotNull(addedContacts.searchContact("HELENA", "LUNDSTRÖM"));
+        assertNotNull(addedContacts.searchContact("Karen", "Batjes"));
+        assertNull(addedContacts.searchContact("Kalle", "Anka"));
+
+        assertEquals(cont1, addedContacts.searchContact("Petra ", "AndreaSSON  "));
+        assertNotEquals(cont2, addedContacts.searchContact("Kalle", "Anka"));
+        assertEquals(cont3, addedContacts.searchContact("KAren ", "Batjes"));
     }
 
     @Test
