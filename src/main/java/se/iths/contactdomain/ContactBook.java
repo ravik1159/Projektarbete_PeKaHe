@@ -14,16 +14,12 @@ public class ContactBook {
         this.ourContactBook = storage.loadFromFile(fileName);
     }
 
-    public ContactBook(ArrayList<Contact> ourContactBook, String fileName) {
-        this.ourContactBook = ourContactBook;
+    public ContactBook(ArrayList<Contact> listOfContacts, String fileName) {
         this.fileName = fileName;
-    }
-
-    public ContactBook(ArrayList<Contact> listOfContacts) {
         this.ourContactBook = listOfContacts;
     }
 
-    public ArrayList<Contact> getListOfContacts() {
+    public ArrayList<Contact> getOurContactBook() {
         return ourContactBook;
     }
 
@@ -90,12 +86,8 @@ public class ContactBook {
                 return true;
             }
         } else {
-            //index <0 i.e. "Name not found in contact book"
+            System.out.println("Name not found in contact book");
             return false;
         }
-    }
-
-    public ArrayList<Contact> getOurContactBook() {
-        return ourContactBook;
     }
 }

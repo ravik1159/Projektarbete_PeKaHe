@@ -65,13 +65,22 @@ public class UserInteraction {
     }
 
     public void addNewContact() {
+        String firstName, lastName;
         System.out.println("You are adding a new contact.");
-        System.out.print("First name: ");
-        String firstName = scan.nextLine();
-        System.out.print("Last name: ");
-        String lastName = scan.nextLine();
+        do {
+            System.out.print("First name: ");
+            firstName = scan.nextLine();
+        } while(firstName.trim().isEmpty() || !firstName.matches("[\\w\\h-.]*"));
+        do {
+            System.out.print("Last name: ");
+            lastName = scan.nextLine();
+        } while(lastName.trim().isEmpty() || !lastName.matches("[\\w\\h-.]*"));
         System.out.print("Telephone number: ");
         String phoneNumber = scan.nextLine();
+        while(phoneNumber.trim().isEmpty() || (!phoneNumber.matches("[\\d\\h-+]*"))) {
+            System.out.println("Please enter a valid phone number:    (do not use letters)");
+            phoneNumber = scan.nextLine();
+        }
         Contact newContact = new Contact(firstName, lastName, phoneNumber);
         if(contactBook.addContact(newContact)) {
             System.out.println(newContact.getFirstName() + " has now been added and saved to your contact book.");
