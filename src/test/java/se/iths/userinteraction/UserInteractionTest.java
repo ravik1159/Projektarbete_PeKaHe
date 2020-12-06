@@ -24,7 +24,7 @@ class UserInteractionTest {
     }
 
     @Test
-    void startMenu() {
+    void testStartMenu() {
 
         StringWriter expectedStringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(expectedStringWriter);

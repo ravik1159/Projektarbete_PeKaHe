@@ -4,10 +4,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import se.iths.contactdomain.Contact;
+import se.iths.contactdomain.ContactBook;
 
 import java.io.*;
 import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class StorageTest {
@@ -59,7 +59,52 @@ class StorageTest {
     }
 
     @Test
-    void loadFromFile() {
-        fail("Not implemented");
+    void testLoadFromFileCreatesNewFileIfNoneExist() throws IOException, ClassNotFoundException {
+        File file = new File(goodFileName);
+        file.delete();
+        assertFalse(file.exists());
+        storage.loadFromFile(goodFileName);
+        assertTrue(file.exists());
+    }
+    @Test
+    void testLoadFromFileReturnsNewArrayListIfFileWasEmpty() throws IOException, ClassNotFoundException {
+        ArrayList<Contact> testLoadOurContactBook = storage.loadFromFile(goodFileName);
+        assertEquals(0, testLoadOurContactBook.size());
+    }
+
+    @Test
+    void testLoadFromFileLoadsArrayListWhenFileExists() throws IOException, ClassNotFoundException {
+            //Create a file that contains one object in ArrayList
+            FileOutputStream fileOutputStream = new FileOutputStream(goodFileName);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(testContacts);
+            objectOutputStream.flush();
+            objectOutputStream.close();
+            fileOutputStream.close();
+
+        ArrayList<Contact> testLoadOurContactBook = storage.loadFromFile(goodFileName);
+
+        ContactBook addedContacts = new ContactBook(testLoadOurContactBook, goodFileName);
+        assertEquals(1, addedContacts.getOurContactBook().size());
+
+        Contact contact = testLoadOurContactBook.get(0);
+        assertEquals("Petra", contact.getFirstName());
+        assertEquals("Andreasson", contact.getLastName());
+        assertNotEquals("Petra", contact.getTelephone());
+    }
+
+    @Test
+    void testLoadFromFileThrowsIoException() {
+        //För att testa om ett exception kastas måste man? göra throw new exception i storageklassen och sen throw i metod namnet.
+        // Det måste sedan hanteras av konstruktorn... Det funkar och testet går igenom... men vill vi ha det så? Alternativet
+        // är ju att göra som writeToFileThrowsError ovan.
+
+       assertThrows(IOException.class, () -> {
+           storage.loadFromFile(badFileName);
+           });
+    }
+    @Test
+    void testLoadFromFileThrowsClassNotFoundException() {
+        fail();
     }
 }
