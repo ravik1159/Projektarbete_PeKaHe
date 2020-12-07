@@ -50,8 +50,18 @@ class UserInteractionTest {
     }
 
     @Test
+    void testNameHasCorrectFormat_NameWithDotandSpace() {
+        assertTrue(ui.nameHasCorrectFormat("Donald Jr."));
+    }
+
+    @Test
     void testPhoneNumberHasCorrectFormat() {
         assertTrue(ui.phoneNumberHasCorrectFormat("123654"));
+    }
+
+    @Test
+    void testPhoneNumberHasCorrectFormat_WithCountryCode() {
+        assertTrue(ui.phoneNumberHasCorrectFormat("+31 646157419"));
     }
 
     @Test
