@@ -65,10 +65,7 @@ class ContactBookTest {
 
     @Test
     void testSearchContact() {
-        assertNotNull(addedContacts.searchContact("HELENA", "LUNDSTRÖM"));
-        assertNotNull(addedContacts.searchContact("Karen", "Batjes"));
-        assertNull(addedContacts.searchContact("Kalle", "Anka"));
-
+        // Kollar om searchContact() hittar och returnerar de kontakterna vi har laggt in i addedContacts.
         assertEquals(cont1, addedContacts.searchContact("Petra ", "AndreaSSON  "));
         assertNotEquals(cont2, addedContacts.searchContact("Kalle", "Anka"));
         assertEquals(cont3, addedContacts.searchContact("KAren ", "Batjes"));
