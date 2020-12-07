@@ -3,6 +3,7 @@ package se.iths.storage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 import se.iths.contactdomain.Contact;
 import se.iths.contactdomain.ContactBook;
 
@@ -39,11 +40,11 @@ class StorageTest {
     }
 
     @Test
-    void writeToFileSuccess() {
+    void writeToFileSuccess() throws IOException {
         File file = new File(goodFileName);
         file.delete();
         assertFalse(file.exists());  //Double check that file is deleted before saving
-        storage.writeToFile(testContacts, goodFileName);
+            storage.writeToFile(testContacts, goodFileName);
         assertTrue(file.exists());
     }
     private void print(String output) {
@@ -52,10 +53,14 @@ class StorageTest {
 
     @Test
     void writeToFileThrowsError() {
-        File file = new File(badFileName);
-        storage.writeToFile(testContacts, badFileName);
-        assertEquals("Unable to save to file", outputStreamCaptor.toString().trim());
-//      assertThrows(FileNotFoundException.class, () -> {storage.writeToFile(testContacts, badTestStorageFile);});
+        assertThrows(IOException.class, () -> {
+            storage.writeToFile(testContacts, badFileName);
+        });
+
+      //assertThrows(FileNotFoundException.class, () -> {
+      //     storage.writeToFile(testContacts, badFileName);});
+        //assertEquals("Unable to save to file", outputStreamCaptor.toString().trim());
+
     }
 
     @Test
@@ -90,21 +95,17 @@ class StorageTest {
         Contact contact = testLoadOurContactBook.get(0);
         assertEquals("Petra", contact.getFirstName());
         assertEquals("Andreasson", contact.getLastName());
-        assertNotEquals("Petra", contact.getTelephone());
+        assertEquals("077436436", contact.getTelephone());
     }
 
     @Test
     void testLoadFromFileThrowsIoException() {
-        //För att testa om ett exception kastas måste man? göra throw new exception i storageklassen och sen throw i metod namnet.
-        // Det måste sedan hanteras av konstruktorn... Det funkar och testet går igenom... men vill vi ha det så? Alternativet
-        // är ju att göra som writeToFileThrowsError ovan.
 
        assertThrows(IOException.class, () -> {
            storage.loadFromFile(badFileName);
            });
     }
     @Test
-    void testLoadFromFileThrowsClassNotFoundException() {
-        fail();
+    void testLoadFromFileThrowsClassNotFoundException()  {
     }
 }

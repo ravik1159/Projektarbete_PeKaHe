@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class UserInteraction {
     private static Scanner scan = new Scanner(System.in);
-    private static ContactBook contactBook = new ContactBook("contactsaves.txt");
+    private static ContactBook contactBook = new ContactBook("X:\\");
 
     public void startMenu() {
         Scanner scan = new Scanner(System.in);
@@ -34,7 +34,7 @@ public class UserInteraction {
         }
    }
 
-    public void showMenu(){
+    private void showMenu(){
         System.out.println("0 - to shutdown");
         System.out.println("1 - Print contacts");
         System.out.println("2 - Add new contact");
@@ -43,7 +43,7 @@ public class UserInteraction {
         System.out.println("5 - Print menu");
     }
 
-    public void choiceSwitch(int action) {
+    private void choiceSwitch(int action) {
         switch (action) {
 
             case 1:
@@ -97,7 +97,7 @@ public class UserInteraction {
         }
     }
 
-    private static void removeContact() {
+    private void removeContact() {
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter Firstname of contact to be removed: ");
         String firstName = scan.nextLine();

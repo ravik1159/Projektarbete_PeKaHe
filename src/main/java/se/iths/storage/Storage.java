@@ -7,7 +7,7 @@ import java.util.InputMismatchException;
 
 public class Storage {
 
-    public void writeToFile(ArrayList<Contact> contactArrayList, String fileName) {
+    public void writeToFile(ArrayList<Contact> contactArrayList, String fileName) throws IOException{
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(fileName);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -16,8 +16,7 @@ public class Storage {
             objectOutputStream.close();
             fileOutputStream.close();
         } catch (IOException ioe) {
-            System.out.println("Unable to save to file");
-            ioe.printStackTrace();
+            throw new IOException("\nWarning! Unable to save your contactbook.");
         }
     }
 
@@ -39,10 +38,11 @@ public class Storage {
             return loadOurContactBook;
         }
         catch (IOException ioe) {
-                throw new IOException("Unable to load from file");
+                throw new IOException("\nWarning! Unable to load your contactbook. Filename should be contactsaves.txt. " +
+                        "This is the current filename: " + fileName + "\nPlease contact Petra, Karen or Helena");
             }
         catch (ClassNotFoundException cnfe) {
-            throw new ClassNotFoundException("Unable to load from file");
+                throw new ClassNotFoundException("\nWarning! Unable to load from file. Unknown error.");
         }
     }
 }

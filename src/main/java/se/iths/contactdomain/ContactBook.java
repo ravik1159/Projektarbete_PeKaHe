@@ -17,7 +17,9 @@ public class ContactBook {
             this.ourContactBook = storage.loadFromFile(fileName);
         } catch (IOException | ClassNotFoundException e){
             System.out.println(e.getMessage());
-            e.printStackTrace();
+
+        }finally {
+            System.exit(0);
         }
     }
 
@@ -30,8 +32,19 @@ public class ContactBook {
         return ourContactBook;
     }
 
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
     public void saveOurContactBook() {
-          storage.writeToFile(ourContactBook, fileName);
+        try{
+            storage.writeToFile(ourContactBook, fileName);
+        } catch (IOException ioe){
+            ioe.getMessage();
+            setFileName("contactsaves.txt");
+            saveOurContactBook();
+        }
+
     }
 
     public boolean addContact(Contact newContact) {
