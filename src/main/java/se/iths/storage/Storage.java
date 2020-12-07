@@ -3,7 +3,6 @@ package se.iths.storage;
 import se.iths.contactdomain.Contact;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 
 public class Storage {
 

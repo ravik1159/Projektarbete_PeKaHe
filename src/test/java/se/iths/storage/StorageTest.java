@@ -3,10 +3,8 @@ package se.iths.storage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 import se.iths.contactdomain.Contact;
 import se.iths.contactdomain.ContactBook;
-
 import java.io.*;
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
@@ -40,7 +38,7 @@ class StorageTest {
     }
 
     @Test
-    void writeToFileSuccess() throws IOException {
+    void testWriteToFile_Success() throws IOException {
         File file = new File(goodFileName);
         file.delete();
         assertFalse(file.exists());  //Double check that file is deleted before saving
@@ -49,14 +47,14 @@ class StorageTest {
     }
 
     @Test
-    void writeToFileThrowsError() {
+    void testWriteToFile_ThrowsException() {
         assertThrows(IOException.class, () -> {
             storage.writeToFile(testContacts, badFileName);
         });
     }
 
     @Test
-    void testLoadFromFileCreatesNewFileIfNoneExist() throws IOException, ClassNotFoundException {
+    void testLoadFromFile_CreatesNewFileIfNoneExist() throws IOException, ClassNotFoundException {
         File file = new File(goodFileName);
         file.delete();
         assertFalse(file.exists());
@@ -64,13 +62,13 @@ class StorageTest {
         assertTrue(file.exists());
     }
     @Test
-    void testLoadFromFileReturnsNewArrayListIfFileWasEmpty() throws IOException, ClassNotFoundException {
+    void testLoadFromFile_ReturnsNewArrayListIfFileWasEmpty() throws IOException, ClassNotFoundException {
         ArrayList<Contact> testLoadOurContactBook = storage.loadFromFile(goodFileName);
         assertEquals(0, testLoadOurContactBook.size());
     }
 
     @Test
-    void testLoadFromFileLoadsArrayListWhenFileExists() throws IOException, ClassNotFoundException {
+    void testLoadFromFile_LoadsArrayListWhenFileExists() throws IOException, ClassNotFoundException {
         //Create a file that contains one object in ArrayList
         FileOutputStream fileOutputStream = new FileOutputStream(goodFileName);
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -91,13 +89,9 @@ class StorageTest {
     }
 
     @Test
-    void testLoadFromFileThrowsIoException() {
+    void testLoadFromFile_ThrowsIoException() {
        assertThrows(IOException.class, () -> {
            storage.loadFromFile(badFileName);
            });
     }
-//    @Test
-//    void testLoadFromFileThrowsClassNotFoundException()  {
-//        fail();
-//    }
 }

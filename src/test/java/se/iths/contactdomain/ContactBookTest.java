@@ -1,14 +1,11 @@
 package se.iths.contactdomain;
 
 import org.junit.jupiter.api.*;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class ContactBookTest {
@@ -38,7 +35,7 @@ class ContactBookTest {
     }
 
     @Test
-    void saveOurContactBook() throws IOException {
+    void testSaveOurContactBook() throws IOException {
         File file = new File(testStorageFile);
         file.delete();
         assertFalse(file.exists());  //Double check that file is deleted before saving
@@ -84,7 +81,7 @@ class ContactBookTest {
     }
 
     @Test
-    void removeContact() {
+    void testRemoveContact() {
         assertTrue(addedContacts.removeContact("Petra", "Andreasson"));
         assertFalse(addedContacts.removeContact("Kurt","j342k!#"));
         assertEquals(2, addedContacts.getOurContactBook().size());
