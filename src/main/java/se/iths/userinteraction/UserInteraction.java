@@ -16,23 +16,21 @@ public class UserInteraction {
         showMenu();
 
         while(!quit){
-            System.out.print("\nMake a choice (5 to show menu again): ");
-            String input = scan.nextLine();
-                while(input.isEmpty() || !(input.matches("[0-5]"))) {
-                System.out.print("You must make a choice between 0 and 5 (5 to show list again): ");
+            String input;
+            do {
+                System.out.print("\nMake a choice (5 to show menu again): ");
                 input = scan.nextLine();
-                }
-
+            } while(!validInput(input));
             int action = Integer.parseInt(input);
             if (action == 0){
                 contactBook.saveOurContactBook();
                 System.out.println("\nShutting down..");
                 quit = true;
-            } else{
+            } else {
                 choiceSwitch(action);
             }
         }
-   }
+    }
 
     private void showMenu(){
         System.out.println("0 - to shutdown");
@@ -130,6 +128,14 @@ public class UserInteraction {
 
     private boolean phoneNumberHasCorrectFormat(String phoneNumber) {
         if(phoneNumber.trim().isEmpty() || !phoneNumber.matches("[\\d\\h-+]*")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validInput(String input) {
+        if(input.isEmpty() || !(input.matches("[0-5]"))) {
             return false;
         } else {
             return true;
