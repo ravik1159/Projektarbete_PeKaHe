@@ -3,27 +3,26 @@ package se.iths.storage;
 import se.iths.contactdomain.Contact;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 public class Storage {
 
-    public void writeToFile(ArrayList<Contact> contactArrayList, String fileName)  {
-        try{
+    public void writeToFile(ArrayList<Contact> contactArrayList, String fileName) throws IOException{
+        try {
             FileOutputStream fileOutputStream = new FileOutputStream(fileName);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(contactArrayList);
             objectOutputStream.flush();
             objectOutputStream.close();
             fileOutputStream.close();
-        }
-        catch (IOException ioe){
-            System.out.println("Unable to save to file");
-            ioe.printStackTrace();
+        } catch (IOException ioe) {
+            throw new IOException("\nWarning! Unable to save your contactbook.");
         }
     }
 
-    public ArrayList<Contact> loadFromFile(String fileName) {
+    public ArrayList<Contact> loadFromFile(String fileName) throws IOException, ClassNotFoundException {
         ArrayList<Contact> loadOurContactBook;
-        try{
+        try {
             File yourFile = new File(fileName);
             yourFile.createNewFile(); // if file already exists, will do nothing
             if (yourFile.length() == 0) {
@@ -37,10 +36,15 @@ public class Storage {
                 fileInputStream.close();
             }
             return loadOurContactBook;
-        } catch (IOException | ClassNotFoundException ioe){
-            System.out.println("Unable to load from file");
-            ioe.printStackTrace();
-            return null;
+        }
+        catch (IOException ioe) {
+                throw new IOException("\nWarning! Unable to load your contactbook. Filename should be contactsaves.txt. " +
+                        "This is the current filename: " + fileName + "\nPlease contact Petra, Karen or Helena");
+            }
+        catch (ClassNotFoundException cnfe) {
+                throw new ClassNotFoundException("\nWarning! Unable to load from file. Unknown error.");
         }
     }
 }
+
+
