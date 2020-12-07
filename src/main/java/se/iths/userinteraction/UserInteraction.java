@@ -117,7 +117,8 @@ public class UserInteraction {
 
 
     public boolean nameHasCorrectFormat(String name) {
-        if (name.trim().isEmpty() || !name.matches("[\\w\\h-.]*")) {
+        if (name.trim().isEmpty() || !name.matches("(?i)(^[a-z])((?![ .,'-]$)[a-z .,'-]){0,24}$")) {
+       // if (name.trim().isEmpty() || !name.matches("[\\w\\h-.]*")) {
             return false;
         } else {
             return true;
@@ -125,7 +126,8 @@ public class UserInteraction {
     }
 
     public boolean phoneNumberHasCorrectFormat(String phoneNumber) {
-        if(phoneNumber.trim().isEmpty() || !phoneNumber.matches("[\\d\\h-+]*")) {
+        if(phoneNumber.trim().isEmpty() || !phoneNumber.matches("^[0-9]+$")) {
+        //if(phoneNumber.trim().isEmpty() || !phoneNumber.matches("[\\d\\h-+]*")) {
             return false;
         } else {
             return true;
