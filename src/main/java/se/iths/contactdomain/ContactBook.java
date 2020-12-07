@@ -1,6 +1,8 @@
 package se.iths.contactdomain;
 
 import se.iths.storage.Storage;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ContactBook {
@@ -11,7 +13,12 @@ public class ContactBook {
 
     public ContactBook(String fileName) {
         this.fileName = fileName;
-        this.ourContactBook = storage.loadFromFile(fileName);
+        try {
+            this.ourContactBook = storage.loadFromFile(fileName);
+        } catch (IOException | ClassNotFoundException e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     public ContactBook(ArrayList<Contact> listOfContacts, String fileName) {

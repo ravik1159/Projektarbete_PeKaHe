@@ -2,7 +2,6 @@ package se.iths.userinteraction;
 
 import se.iths.contactdomain.Contact;
 import se.iths.contactdomain.ContactBook;
-
 import java.util.Scanner;
 
 public class UserInteraction {
@@ -10,7 +9,7 @@ public class UserInteraction {
     private static ContactBook contactBook = new ContactBook("contactsaves.txt");
 
     public void startMenu() {
-
+        Scanner scan = new Scanner(System.in);
         boolean quit = false;
 
         System.out.println("\nMenu:\n---------------");
@@ -19,20 +18,21 @@ public class UserInteraction {
         while(!quit){
             System.out.print("\nMake a choice (5 to show menu again): ");
             String input = scan.nextLine();
-            while(input.isEmpty() || !(input.matches("[0-5]"))) {
+                while(input.isEmpty() || !(input.matches("[0-5]"))) {
                 System.out.print("You must make a choice between 0 and 5 (5 to show list again): ");
                 input = scan.nextLine();
-            }
+                }
+
             int action = Integer.parseInt(input);
             if (action == 0){
                 contactBook.saveOurContactBook();
-                System.out.println("\n Shutting down..");
+                System.out.println("\nShutting down..");
                 quit = true;
             } else{
                 choiceSwitch(action);
             }
         }
-    }
+   }
 
     public void showMenu(){
         System.out.println("0 - to shutdown");
@@ -107,6 +107,7 @@ public class UserInteraction {
     }
 
     private static void removeContact() {
+        Scanner scan = new Scanner(System.in);
         System.out.print("Enter Firstname of contact to be removed: ");
         String firstName = scan.nextLine();
         System.out.print("Enter Lastname of contact to be removed: ");
