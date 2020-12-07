@@ -16,23 +16,21 @@ public class UserInteraction {
         showMenu();
 
         while(!quit){
-            System.out.print("\nMake a choice (5 to show menu again): ");
-            String input = scan.nextLine();
-                while(input.isEmpty() || !(input.matches("[0-5]"))) {
-                System.out.print("You must make a choice between 0 and 5 (5 to show list again): ");
+            String input;
+            do {
+                System.out.print("\nMake a choice (5 to show menu again): ");
                 input = scan.nextLine();
-                }
-
+            } while(!validInput(input));
             int action = Integer.parseInt(input);
             if (action == 0){
                 contactBook.saveOurContactBook();
                 System.out.println("\nShutting down..");
                 quit = true;
-            } else{
+            } else {
                 choiceSwitch(action);
             }
         }
-   }
+    }
 
     private void showMenu(){
         System.out.println("0 - to shutdown");
@@ -45,7 +43,6 @@ public class UserInteraction {
 
     private void choiceSwitch(int action) {
         switch (action) {
-
             case 1:
                 contactBook.printContactBook();
                 break;
@@ -64,20 +61,20 @@ public class UserInteraction {
         }
     }
 
-    public void addNewContact() {
+    private void addNewContact() {
         String firstName, lastName;
         System.out.println("You are adding a new contact.");
         do {
             System.out.print("First name: ");
             firstName = scan.nextLine();
-        } while(firstName.trim().isEmpty() || !firstName.matches("[\\w\\h-.]*"));
+        } while(!nameHasCorrectFormat(firstName));
         do {
             System.out.print("Last name: ");
             lastName = scan.nextLine();
-        } while(lastName.trim().isEmpty() || !lastName.matches("[\\w\\h-.]*"));
-        System.out.print("Telephone number: ");
+        } while(!nameHasCorrectFormat(lastName));
+        System.out.print("Phone number: ");
         String phoneNumber = scan.nextLine();
-        while(phoneNumber.trim().isEmpty() || (!phoneNumber.matches("[\\d\\h-+]*"))) {
+        while(!phoneNumberHasCorrectFormat(phoneNumber)) {
             System.out.println("Please enter a valid phone number:    (do not use letters)");
             phoneNumber = scan.nextLine();
         }
@@ -87,7 +84,7 @@ public class UserInteraction {
         }
     }
 
-    public void searchContact(){
+    private void searchContact(){
         System.out.println("Searching for a contact.");
         System.out.print("Enter firstname:");
         String firstName = scan.nextLine();
@@ -118,5 +115,30 @@ public class UserInteraction {
         }
         else
             System.out.println("contact " + firstName + " removed from contact book");
+    }
+
+
+    private boolean nameHasCorrectFormat(String name) {
+        if (name.trim().isEmpty() || !name.matches("[\\w\\h-.]*")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean phoneNumberHasCorrectFormat(String phoneNumber) {
+        if(phoneNumber.trim().isEmpty() || !phoneNumber.matches("[\\d\\h-+]*")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validInput(String input) {
+        if(input.isEmpty() || !(input.matches("[0-5]"))) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

@@ -62,7 +62,6 @@ public class ContactBook {
         }
     }
 
-    // Kontrollerar För- och Efternamn mot ourContactBook
     private int findContact(String contactFirstName, String contactLastName) {
 
         for(Contact contact: ourContactBook){

@@ -79,13 +79,13 @@ class StorageTest {
 
     @Test
     void testLoadFromFileLoadsArrayListWhenFileExists() throws IOException, ClassNotFoundException {
-            //Create a file that contains one object in ArrayList
-            FileOutputStream fileOutputStream = new FileOutputStream(goodFileName);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(testContacts);
-            objectOutputStream.flush();
-            objectOutputStream.close();
-            fileOutputStream.close();
+        //Create a file that contains one object in ArrayList
+        FileOutputStream fileOutputStream = new FileOutputStream(goodFileName);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(testContacts);
+        objectOutputStream.flush();
+        objectOutputStream.close();
+        fileOutputStream.close();
 
         ArrayList<Contact> testLoadOurContactBook = storage.loadFromFile(goodFileName);
 
