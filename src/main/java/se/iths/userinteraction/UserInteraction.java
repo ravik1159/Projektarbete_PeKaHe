@@ -34,7 +34,7 @@ public class UserInteraction {
         }
    }
 
-    public void showMenu(){
+    private void showMenu(){
         System.out.println("0 - to shutdown");
         System.out.println("1 - Print contacts");
         System.out.println("2 - Add new contact");
@@ -43,9 +43,8 @@ public class UserInteraction {
         System.out.println("5 - Print menu");
     }
 
-    public void choiceSwitch(int action) {
+    private void choiceSwitch(int action) {
         switch (action) {
-
             case 1:
                 contactBook.printContactBook();
                 break;
@@ -64,20 +63,20 @@ public class UserInteraction {
         }
     }
 
-    public void addNewContact() {
+    private void addNewContact() {
         String firstName, lastName;
         System.out.println("You are adding a new contact.");
         do {
             System.out.print("First name: ");
             firstName = scan.nextLine();
-        } while(firstName.trim().isEmpty() || !firstName.matches("[\\w\\h-.]*"));
+        } while(!nameHasCorrectFormat(firstName));
         do {
             System.out.print("Last name: ");
             lastName = scan.nextLine();
-        } while(lastName.trim().isEmpty() || !lastName.matches("[\\w\\h-.]*"));
-        System.out.print("Telephone number: ");
+        } while(!nameHasCorrectFormat(lastName));
+        System.out.print("Phone number: ");
         String phoneNumber = scan.nextLine();
-        while(phoneNumber.trim().isEmpty() || (!phoneNumber.matches("[\\d\\h-+]*"))) {
+        while(!phoneNumberHasCorrectFormat(phoneNumber)) {
             System.out.println("Please enter a valid phone number:    (do not use letters)");
             phoneNumber = scan.nextLine();
         }
@@ -87,7 +86,7 @@ public class UserInteraction {
         }
     }
 
-    public void searchContact(){
+    private void searchContact(){
         System.out.println("Searching for a contact.");
         System.out.print("Enter firstname:");
         String firstName = scan.nextLine();
@@ -106,7 +105,7 @@ public class UserInteraction {
         }
     }
 
-    private static void removeContact() {
+    private void removeContact() {
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter Firstname of contact to be removed: ");
         String firstName = scan.nextLine();
@@ -118,5 +117,22 @@ public class UserInteraction {
         }
         else
             System.out.println("contact " + firstName + " removed from contact book");
+    }
+
+
+    private boolean nameHasCorrectFormat(String name) {
+        if (name.trim().isEmpty() || !name.matches("[\\w\\h-.]*")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean phoneNumberHasCorrectFormat(String phoneNumber) {
+        if(phoneNumber.trim().isEmpty() || !phoneNumber.matches("[\\d\\h-+]*")) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
