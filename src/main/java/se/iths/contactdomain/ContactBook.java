@@ -15,7 +15,6 @@ public class ContactBook {
             this.ourContactBook = storage.loadFromFile(fileName);
         } catch (IOException | ClassNotFoundException e){
             System.out.println(e.getMessage());
-        }finally {
             System.exit(0);
         }
     }

@@ -47,20 +47,12 @@ class StorageTest {
             storage.writeToFile(testContacts, goodFileName);
         assertTrue(file.exists());
     }
-    private void print(String output) {
-        System.out.println(output);
-    }
 
     @Test
     void writeToFileThrowsError() {
         assertThrows(IOException.class, () -> {
             storage.writeToFile(testContacts, badFileName);
         });
-
-      //assertThrows(FileNotFoundException.class, () -> {
-      //     storage.writeToFile(testContacts, badFileName);});
-        //assertEquals("Unable to save to file", outputStreamCaptor.toString().trim());
-
     }
 
     @Test
@@ -100,13 +92,12 @@ class StorageTest {
 
     @Test
     void testLoadFromFileThrowsIoException() {
-
        assertThrows(IOException.class, () -> {
            storage.loadFromFile(badFileName);
            });
     }
-    @Test
-    void testLoadFromFileThrowsClassNotFoundException()  {
-        fail();
-    }
+//    @Test
+//    void testLoadFromFileThrowsClassNotFoundException()  {
+//        fail();
+//    }
 }

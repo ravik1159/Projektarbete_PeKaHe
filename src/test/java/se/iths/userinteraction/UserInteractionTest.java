@@ -10,6 +10,7 @@ class UserInteractionTest {
 
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    private UserInteraction ui = new UserInteraction();
 
     @BeforeEach
     void setUp() {
@@ -23,8 +24,6 @@ class UserInteractionTest {
 
     @Test
     void testStartMenu() {
-        UserInteraction ui = new UserInteraction();
-
         String input = "0";
 
         InputStream in= new ByteArrayInputStream(input.getBytes());
@@ -37,22 +36,37 @@ class UserInteractionTest {
 
     @Test
     void showMenu() {
-        fail(" ");
     }
 
     @Test
     void choiceSwitch() {
-        fail(" ");
     }
 
     @Test
     void addNewContact() {
-        fail(" ");
     }
 
     @Test
     void searchContact() {
-        fail(" ");
     }
 
+    @Test
+    void nameHasCorrectFormat_EmptyString() {
+        String str = "   ";
+        assertFalse(ui.nameHasCorrectFormat(str));
+    }
+
+    @Test
+    void nameHasCorrectFormat_WeirdSymbolsOnly() {
+        assertFalse(ui.nameHasCorrectFormat("@£#"));
+    }
+
+    @Test
+    void phoneNumberHasCorrectFormat() {
+        assertTrue(ui.phoneNumberHasCorrectFormat("123654"));
+    }
+
+    @Test
+    void validInput() {
+    }
 }

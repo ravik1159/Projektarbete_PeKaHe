@@ -117,7 +117,7 @@ public class UserInteraction {
     }
 
 
-    private boolean nameHasCorrectFormat(String name) {
+    public boolean nameHasCorrectFormat(String name) {
         if (name.trim().isEmpty() || !name.matches("[\\w\\h-.]*")) {
             return false;
         } else {
@@ -125,7 +125,7 @@ public class UserInteraction {
         }
     }
 
-    private boolean phoneNumberHasCorrectFormat(String phoneNumber) {
+    public boolean phoneNumberHasCorrectFormat(String phoneNumber) {
         if(phoneNumber.trim().isEmpty() || !phoneNumber.matches("[\\d\\h-+]*")) {
             return false;
         } else {
@@ -133,7 +133,7 @@ public class UserInteraction {
         }
     }
 
-    private boolean validInput(String input) {
+    public boolean validInput(String input) {
         if(input.isEmpty() || !(input.matches("[0-5]"))) {
             return false;
         } else {
