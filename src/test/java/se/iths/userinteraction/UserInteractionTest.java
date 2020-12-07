@@ -67,6 +67,7 @@ class UserInteractionTest {
     }
 
     @Test
-    void validInput() {
+    void validInput_WhenInvalidInputGiven() {
+        assertFalse(ui.validInput("5464"));
     }
 }
