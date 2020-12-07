@@ -24,10 +24,6 @@ class ContactBookTest {
     @BeforeEach
     void setup() {
         ArrayList<Contact> testContacts = new ArrayList<>(); //Needed to be able to add Contacts to arraylist using the standard add method instead of our own addContact method
-        // Har flyttat upp contact objecter, så att andra testSearchContact har tillgång till dem
-//        Contact cont1 = new Contact("Petra", "Andreasson", "077436436");
-//        Contact cont2 = new Contact("Helena", "Lundström", "943743587");
-//        Contact cont3 = new Contact("Karen", "Batjes", "73428465");
         testContacts.add(cont1);
         testContacts.add(cont2);
         testContacts.add(cont3);
@@ -38,7 +34,6 @@ class ContactBookTest {
     void tearDown() {
         File file = new File(testStorageFile);
         file.delete();
-
         System.setOut(standardOut);
     }
 

@@ -40,7 +40,7 @@ public class UserInteraction {
         System.out.println("5 - Print menu");
     }
 
-    private void choiceSwitch(int action) {
+    public void choiceSwitch(int action) {
         switch (action) {
             case 1:
                 contactBook.printContactBook();
@@ -96,8 +96,7 @@ public class UserInteraction {
             System.out.println("Contact found ");
             System.out.println("Name: " + searchContactRecord.getFirstName() + " " + searchContactRecord.getLastName() +
                     " Telephone number: " + searchContactRecord.getTelephone());
-        }
-        else{
+        } else{
             System.out.println("Contact not found");
         }
     }

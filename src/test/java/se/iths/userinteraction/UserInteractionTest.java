@@ -31,43 +31,31 @@ class UserInteractionTest {
         ui.startMenu();
 
         assertTrue(outputStreamCaptor.toString().contains("Shutting down"));
-
     }
 
     @Test
-    void showMenu() {
+    void testChoiceSwitch() {
+        ui.choiceSwitch(5); // input 5 visar menyn
+        assertTrue(outputStreamCaptor.toString().contains("0 - to shutdown")); // "0 - to shutdown" borde vara första raden av menyn
     }
 
     @Test
-    void choiceSwitch() {
+    void testNameHasCorrectFormat_EmptyString() {
+        assertFalse(ui.nameHasCorrectFormat("   "));
     }
 
     @Test
-    void addNewContact() {
-    }
-
-    @Test
-    void searchContact() {
-    }
-
-    @Test
-    void nameHasCorrectFormat_EmptyString() {
-        String str = "   ";
-        assertFalse(ui.nameHasCorrectFormat(str));
-    }
-
-    @Test
-    void nameHasCorrectFormat_WeirdSymbolsOnly() {
+    void testNameHasCorrectFormat_WeirdSymbolsOnly() {
         assertFalse(ui.nameHasCorrectFormat("@£#"));
     }
 
     @Test
-    void phoneNumberHasCorrectFormat() {
+    void testPhoneNumberHasCorrectFormat() {
         assertTrue(ui.phoneNumberHasCorrectFormat("123654"));
     }
 
     @Test
-    void validInput_WhenInvalidInputGiven() {
+    void testValidInput_WhenInvalidInputGiven() {
         assertFalse(ui.validInput("5464"));
     }
 }
