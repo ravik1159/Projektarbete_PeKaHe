@@ -4,6 +4,7 @@ import org.junit.jupiter.api.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,7 @@ class ContactBookTest {
     }
 
     @Test
-    void saveOurContactBook() {
+    void saveOurContactBook() throws IOException {
         File file = new File(testStorageFile);
         file.delete();
         assertFalse(file.exists());  //Double check that file is deleted before saving

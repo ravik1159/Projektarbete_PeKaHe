@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class UserInteraction {
     private static Scanner scan = new Scanner(System.in);
-    private static ContactBook contactBook = new ContactBook("X:\\");
+    private static final ContactBook contactBook = new ContactBook("contactsaves.txt");
 
     public void startMenu() {
         Scanner scan = new Scanner(System.in);
@@ -23,7 +23,6 @@ public class UserInteraction {
             } while(!validInput(input));
             int action = Integer.parseInt(input);
             if (action == 0){
-                contactBook.saveOurContactBook();
                 System.out.println("\nShutting down..");
                 quit = true;
             } else {

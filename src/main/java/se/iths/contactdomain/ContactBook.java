@@ -1,7 +1,6 @@
 package se.iths.contactdomain;
 
 import se.iths.storage.Storage;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -10,14 +9,12 @@ public class ContactBook {
     private ArrayList<Contact> ourContactBook;
     private String fileName;
 
-
     public ContactBook(String fileName) {
         this.fileName = fileName;
         try {
             this.ourContactBook = storage.loadFromFile(fileName);
         } catch (IOException | ClassNotFoundException e){
             System.out.println(e.getMessage());
-
         }finally {
             System.exit(0);
         }
@@ -36,16 +33,9 @@ public class ContactBook {
         this.fileName = fileName;
     }
 
-    public void saveOurContactBook() {
-        try{
+    public void saveOurContactBook () throws IOException {
             storage.writeToFile(ourContactBook, fileName);
-        } catch (IOException ioe){
-            ioe.getMessage();
-            setFileName("contactsaves.txt");
-            saveOurContactBook();
         }
-
-    }
 
     public boolean addContact(Contact newContact) {
         if(findContact(newContact.getFirstName(), newContact.getLastName()) >= 0) {
@@ -53,8 +43,14 @@ public class ContactBook {
             return false;
         } else {
             if(ourContactBook.add(newContact)) {
-                saveOurContactBook();
-                return true;
+                try{
+                    saveOurContactBook();
+                    return true;
+                } catch(IOException ioe){
+                    ioe.getMessage();
+                    System.out.println("Please contact Petra, Karen or Helena in case of emergency");
+                    return false;
+                }
             } else {
                 System.out.println("Something went wrong, contact could not be added to your contact book");
                 return false;
@@ -100,9 +96,15 @@ public class ContactBook {
                 //"Contact couldn't be removed from contact book"
                 return false;
             } else {
-                saveOurContactBook();
-                //"Contact removed from contact book"
-                return true;
+                try{
+                    saveOurContactBook();
+                    //"Contact removed from contact book"
+                    return true;
+                } catch(IOException ioe){
+                    ioe.getMessage();
+                    System.out.println("Please contact Petra, Karen or Helena in case of emergency");
+                    return false;
+                }
             }
         } else {
             System.out.println("Name not found in contact book");

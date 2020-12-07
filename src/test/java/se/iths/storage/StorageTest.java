@@ -107,5 +107,6 @@ class StorageTest {
     }
     @Test
     void testLoadFromFileThrowsClassNotFoundException()  {
+        fail();
     }
 }
