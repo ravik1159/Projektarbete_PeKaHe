@@ -10,6 +10,7 @@ class UserInteractionTest {
 
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    private final InputStream standardIn = System.in;
     private UserInteraction ui = new UserInteraction();
 
     @BeforeEach
@@ -31,6 +32,7 @@ class UserInteractionTest {
         ui.startMenu();
 
         assertTrue(outputStreamCaptor.toString().contains("Shutting down"));
+        System.setIn(standardIn);
     }
 
     @Test
