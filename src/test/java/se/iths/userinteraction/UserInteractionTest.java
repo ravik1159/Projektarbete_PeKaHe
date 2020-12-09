@@ -47,13 +47,13 @@ class UserInteractionTest {
     }
 
     @Test
-    void testNameHasCorrectFormat_WeirdSymbolsOnly() {
-        assertFalse(ui.nameHasCorrectFormat("@£#"));
+    void testNameHasCorrectFormat_NameWithDotandSpace() {
+        assertTrue(ui.nameHasCorrectFormat("Donald Jr."));
     }
 
     @Test
     void testPhoneNumberHasCorrectFormat() {
-        assertTrue(ui.phoneNumberHasCorrectFormat("123654"));
+        assertTrue(ui.phoneNumberHasCorrectFormat("070-1234568"));
     }
 
     @Test
