@@ -78,10 +78,10 @@ public class ContactBook {
 
     public void printContactBook(){
         if(ourContactBook.size() > 0) {
-            System.out.println("Our contacts:");
+            System.out.println("\nOur contacts:\nName\t\t\tPhonenumber\n---------------------------");
             for (Contact contact : this.ourContactBook) {
-                System.out.println("Name: " + contact.getFirstName() + " " + contact.getLastName());
-                System.out.println("Telephone number: " + contact.getTelephone());
+                System.out.println(contact.getFirstName() + " " + contact.getLastName()
+                        +"\t\t" + contact.getTelephone());
             }
         } else {
             System.out.println("Contact book is empty");
