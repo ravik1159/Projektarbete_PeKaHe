@@ -14,8 +14,8 @@ class StorageTest {
     private ArrayList<Contact> testContacts;
     private static Storage storage = new Storage();
     private static String goodFileName = "storagetestsaves.txt";
-    private static String badFileName = "X:\\";
-
+    //private static String badFileName = "X:\\";
+    private static String badFileName = "///foo";
     //Prep for reassign the standard output stream to a new PrintStream with a ByteArrayOutputStream
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
@@ -45,15 +45,13 @@ class StorageTest {
             storage.writeToFile(testContacts, goodFileName);
         assertTrue(file.exists());
     }
-/*
+
     @Test
     void testWriteToFile_ThrowsException() {
         assertThrows(IOException.class, () -> {
             storage.writeToFile(testContacts, badFileName);
         });
     }
-
- */
 
     @Test
     void testLoadFromFile_CreatesNewFileIfNoneExist() throws IOException, ClassNotFoundException {
@@ -89,13 +87,11 @@ class StorageTest {
         assertEquals("Andreasson", contact.getLastName());
         assertEquals("077436436", contact.getTelephone());
     }
-/*
+
     @Test
     void testLoadFromFile_ThrowsIoException() {
        assertThrows(IOException.class, () -> {
            storage.loadFromFile(badFileName);
            });
     }
-
- */
 }
