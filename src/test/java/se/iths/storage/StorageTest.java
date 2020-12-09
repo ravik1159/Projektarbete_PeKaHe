@@ -14,7 +14,8 @@ class StorageTest {
     private ArrayList<Contact> testContacts;
     private static Storage storage = new Storage();
     private static String goodFileName = "storagetestsaves.txt";
-    private static String badFileName = "X:\\";
+    private static String badFileName = " ";
+    //private static String badFileName = "X:\\";
 
     //Prep for reassign the standard output stream to a new PrintStream with a ByteArrayOutputStream
     private final PrintStream standardOut = System.out;
