@@ -117,7 +117,7 @@ public class UserInteraction {
 
 
     public boolean nameHasCorrectFormat(String name) {
-        if (name.trim().isEmpty() || !name.matches("(^[a-zA-Z])*(?![ .,'-]$)([a-zA-Z .,'-])*$")) {
+        if (name.trim().isEmpty() || !name.matches("(^[a-zåäöA-ZÅÄÖ])*(?![ .,'-]$)([a-zåäöA-ZÅÄÖ .,'-])*$")) {
             return false;
         } else {
             return true;
