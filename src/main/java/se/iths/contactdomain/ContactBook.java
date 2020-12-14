@@ -28,10 +28,6 @@ public class ContactBook {
         return ourContactBook;
     }
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
     public void saveOurContactBook () throws IOException {
             storage.writeToFile(ourContactBook, fileName);
         }
